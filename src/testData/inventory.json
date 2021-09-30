@@ -1,0 +1,74 @@
+[
+    {
+        "itemType":"Laptop",
+        "brand":"Dell",
+        "itemModel": "E6440",
+        "processor":"i5",
+        "ramSize": "4gb",
+        "hddSize":"250gb",
+        "quantity": "20",
+        "unitPrice":"100",
+        "generation":"4th gen",
+        "itemDescription": "Dell E6440 i5 4gb 250gb 4th gen Laptop"
+    },
+    {
+        "itemType":"Laptop",
+        "brand":"Dell",
+        "itemModel": "E7440",
+        "processor":"i7",
+        "ramSize": "4gb",
+        "hddSize":"500gb",
+        "quantity": "10",
+        "unitPrice":"100",
+        "generation":"5th gen",
+        "itemDescription": "Dell E7440 i5 4gb 500gb 5th gen Laptop"
+    },
+    {
+        "itemType":"Laptop",
+        "brand":"HP",
+        "itemModel": "6750b",
+        "processor":"i5",
+        "ramSize": "4gb",
+        "hddSize":"320gb",
+        "quantity": "20",
+        "unitPrice":"80",
+        "generation":"2nd gen",
+        "itemDescription": "HP 6750b i5 4gb 320gb 2nd gen Laptop"
+    },
+    {
+        "itemType":"Laptop",
+        "brand":"Dell",
+        "itemModel": "E6440",
+        "processor":"i5",
+        "ramSize": "4gb",
+        "hddSize":"250gb",
+        "quantity": "6",
+        "unitPrice":"100",
+        "generation":"4th gen",
+        "itemDescription": "Dell E6440 i5 4gb 250gb 4th gen"
+    },
+    {
+        "itemType":"Laptop",
+        "brand":"Lenovo",
+        "itemModel": "T460",
+        "processor":"i5",
+        "ramSize": "16gb",
+        "hddSize":"500gb",
+        "quantity": "18",
+        "unitPrice":"100",
+        "generation":"6th gen",
+        "itemDescription": "Lenovo T460 i5 4gb 250gb 4th gen"
+    },
+    {
+        "itemType":"Laptop",
+        "brand":"Asus",
+        "itemModel": "M81",
+        "processor":"i5",
+        "ramSize": "8gb",
+        "hddSize":"1tbb",
+        "quantity": "4",
+        "unitPrice":"100",
+        "generation":"7th gen",
+        "itemDescription": "Asus M81 i5 8gb 500gb 7th gen"
+    }
+]

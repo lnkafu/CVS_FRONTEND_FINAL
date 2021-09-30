@@ -1,0 +1,8 @@
+@media print { 
+    .no-printDiv  { display: none;}
+    .printDiv  { 
+        display: block;
+        background-image: url('../../images/background.jpg');
+        background-color: black;
+    }
+}
