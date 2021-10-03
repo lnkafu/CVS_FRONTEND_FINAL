@@ -32,7 +32,8 @@ export default class PerformSaleComponent extends React.Component {
             customer: null,
             total: 0,
             inventory: [],
-            customers: []
+            customers: [],
+            soldItemsSaved: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -40,12 +41,12 @@ export default class PerformSaleComponent extends React.Component {
 
     }
     inventory = require('../../testData/inventory')
-   // customers = require('../../testData/customers')
+    // customers = require('../../testData/customers')
     cus = ['larry', 'paul', 'luis']
 
 
     inventory2 = async () => {
-        await axios.get(url.url+"/getInventories")
+        await axios.get(url.url + "/getInventories")
             .then(result => {
                 var inventoryTemp = result.data.Data
                 console.log(inventoryTemp)
@@ -88,7 +89,7 @@ export default class PerformSaleComponent extends React.Component {
         }
     }
     printCustomers = () => {
-       // console.log('customers are: ', this.state.customers)
+        // console.log('customers are: ', this.state.customers)
         return this.state.customers.map((customer, index) => {
             if (customer.name.toLowerCase().includes(this.state.searchCustomer.toLowerCase())) {
                 return <tr key={index}>
@@ -148,7 +149,7 @@ export default class PerformSaleComponent extends React.Component {
             tempCart.push(tempItem)
         } else {
             await cart.map(itm => {
-                if (itm.itemDescription === tempItem.itemDescription) {
+                if (itm.itemID === tempItem.itemID) {
                     itm.quantity = itm.quantity + 1
                     tempCart.push(itm)
                     containsItem = true
@@ -202,6 +203,7 @@ export default class PerformSaleComponent extends React.Component {
         return this.state.cart.map((itm, index) => {
             return <tr key={index}>
                 <td>{index + 1}</td>
+                <td>{itm.itemID}</td>
                 <td>{itm.itemDescription}</td>
                 <td>{itm.quantity}</td>
                 <td>
@@ -217,37 +219,40 @@ export default class PerformSaleComponent extends React.Component {
         })
     }
 
-    componentDidMount(){
+    componentDidMount() {
         document.title = 'Perform Sale'
-        axios.get(url.url+"/getInventories")
+        axios.get(url.url + "/getInventories")
             .then(result => {
                 var inventoryTemp = result.data.Data
-                this.setState({...this.state, inventory: inventoryTemp})
+                this.setState({ ...this.state, inventory: inventoryTemp })
             })
             .catch(err => {
                 console.log('err occurred ', err)
             })
 
-            axios.get(url.url+"/customers")
+        axios.get(url.url + "/customers")
             .then(result => {
-               // console.log('customers got on front end')
+                // console.log('customers got on front end')
                 var customersTemp = result.data.Data
-                this.setState({...this.state, customers: customersTemp})
+                this.setState({ ...this.state, customers: customersTemp })
             })
             .catch(err => {
                 console.log('err occurred getting customers', err)
-            }) 
+            })
     }
-   
-    printInventory =  (neededItemType, neededBrand) => {
+
+    printInventory = (neededItemType, neededBrand) => {
         let inventory = []
-       // console.log('inventory is ', this.state.inventory)
+        // console.log('inventory is ', this.state.inventory)
 
         return this.state.inventory.map((item, index) => {
             // return this.inventory.map((item, index) => {
             if (item.itemType === neededItemType && this.state.brand === '') {
+                console.log(item)
                 return <tr key={index}>
                     <td key={index}>{index + 1}</td>
+                    <td >{item.itemID}</td>
+                    <td >{item.shipmentCode}</td>
                     <td>{item.itemDescription}  </td>
                     <td>{item.quantity}</td>
                     <td>
@@ -257,6 +262,8 @@ export default class PerformSaleComponent extends React.Component {
             } else if (item.itemType === neededItemType && item.brand === this.state.brand) {
                 return <tr key={index}>
                     <td key={index}>{index + 1}</td>
+                    <td >{item.itemID}</td>
+                    <td >{item.shipmentCode}</td>
                     <td>{item.itemDescription}  </td>
                     <td>{item.quantity}</td>
                     <td>
@@ -294,52 +301,20 @@ export default class PerformSaleComponent extends React.Component {
         this.setState({ ...this.state, showFinalizeModal: true })
     };
 
+
+
     printCustomerOnReceipt = () => {
         if (this.state.customer != null) {
-            console.log(this.state.customer)
             return <tr>
                 <td><b>Customer Name:</b> {this.state.customer.name}</td>
                 <td><b>Phone Number1:</b> {this.state.customer.phoneNumber}</td>
             </tr>
         }
     }
-    backEndProcessing = async () => {
-        let subTotal = 0
-        let total = 0
-        let itemsSoldDescription = ' '
-        let cart = await this.state.cart.map((item, index) => {
-            subTotal = item.quantity * item.salesPrice
-            total += subTotal
-            itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' - '
-            return <tr key={index}>
-                <td>{item.quantity} {item.itemDescription} </td>
-                <td>{subTotal}frs</td>
-            </tr>
-        })
 
-        const salesTransaction = {
-            customer: this.state.customer,
-            total: total,
-            soldItemsSummary: itemsSoldDescription,
-            soldBy: {},
-        }
-        // salesTransaction.confirmationNumber = 'hb'
-        // salesTransaction.customer = this.state.customer
-        // salesTransaction.total = total
-        // salesTransaction.itemsSold = {}
-        // salesTransaction.soldBy = {}
-        // salesTransaction.itemsSoldSummary = itemsSoldDescription
-
-        console.log('sales transaction is: ', salesTransaction)
-        axios.post(url.url+"/saveSale", salesTransaction)
-            .then(result => {
-                console.log('result is:', result)
-            }).catch(err => {
-                console.log("error", err)
-            })
-    }
-
-    receiptPrinting = () => {
+ 
+  
+    reviewPurchase = () => {
 
         let subTotal = 0
         let total = 0
@@ -355,8 +330,8 @@ export default class PerformSaleComponent extends React.Component {
         })
 
         return <div>
-            <h3>Computer Village Store</h3>
-            <h4>Thank you for your pruchase</h4>
+            <h5>Check the below information for accuracy and completeness. Once transaction is saved, it cannot be undone</h5>
+            <h6>Below are the items which the customer wishes to purchase</h6>
             <table className='table table-bordered'>
                 <tbody>
                     {
@@ -382,10 +357,10 @@ export default class PerformSaleComponent extends React.Component {
         let extractedCart = this.state.cart
         let itemsSoldDescription = ''
         console.log('cart is ', extractedCart)
-        extractedCart.map((item, index) => {
+        extractedCart.map((item, index) => { 
             let subTotal = item.quantity * item.salesPrice
             total += subTotal
-            itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' - '
+            itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' @' + item.salesPrice + ' - '
 
         })
         let finalSale = {
@@ -395,25 +370,70 @@ export default class PerformSaleComponent extends React.Component {
             soldItemsSummary: itemsSoldDescription,
             cart: extractedCart
         }
-        // console.log('sale is :', finalSale)
+        
+        var a = window.open('', '');
 
-        axios.post(url.url+"/saveSale", finalSale)
+        axios.post(url.url + "/saveSale", finalSale)
             .then(result => {
-                console.log(result)
+                console.log('sales posted', result)
+                this.setState({ ...this.state, soldItemsSaved: result.data.ItemsSold })
+
+                let soldItemsSaved = result.data.ItemsSold
+                let itemsTemp = soldItemsSaved.itemsSoldSummary
+                let items = []
+                items = itemsTemp.split('-')
+
+        
+                //a.document.body.style.backgroundImage = `url(${backgroundImg})`;
+                a.document.write('<html >');
+                a.document.write(`<body class='printDivContent' style='background-image: url(${backgroundImg})'> <br>`);
+        
+                a.document.write('<h3 align="center"> Computer Village Store </h3>');
+                a.document.write(`<h4 align="center"> Située au COLLEG L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h4>`);
+                a.document.write(`<h5 align="center"> Merci Pour Votre Achat/ Thank You For Your Purchase.  </h5>`);
+                
+                a.document.write(`<hr>`);
+
+                a.document.write('<table >');
+                a.document.write('<tr>');
+                a.document.write(`<td><u>Confirmation Number</u>: <i> ${soldItemsSaved.confirmationNumber} </i>  </td>  `);
+                a.document.write(`<td><u>Nom Du Client (Customer Name)</u>: <i>${soldItemsSaved.customerName} </i>  </td>  `);
+                a.document.write(`<td><u>Contact</u>: <i> ${soldItemsSaved.customerNumber} </i> </td>`);
+                a.document.write('</tr>');
+                a.document.write('</table>');
+                a.document.write('<br>');
+
+                
+                a.document.write('<table >');
+                items.forEach(ele => {
+                    if (ele !== " ") {
+                        a.document.write(`<tr> <td>  ${ele}frs </td>  </tr>`);
+                    }
+                })
+                a.document.write('</table>');
+
+                a.document.write(`<p> <b>Total</b> ${soldItemsSaved.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frs </p>`);
+
+                a.document.write(`</body>`);
+
+                a.document.write(`<hr>`);
+
+                a.document.write('<footer>');
+                a.document.write('<p>Votre entreprise est très appréciée. Nous espérons vous revoir bientôt. Pour la validité de cet achat, veuillez nous contacter avec votre numéro de confirmation. </p>');
+                a.document.write('<p>Your business is highly appreciated. We hope to see you again. For validity of this purchase, please contact us with your confirmation number. </p>');
+                a.document.write('</footer>');
+                a.document.write('</html >');
+                a.document.close();
+                a.print();
+
             })
             .catch(err => {
                 console.log('err occurred ', err)
+                alert('Sales Not Saved')
             })
 
-        var divContents = document.getElementById("receiptBody").innerHTML;
-        var a = window.open('', '');
-        //a.document.body.style.backgroundImage = `url(${backgroundImg})`;
-        a.document.write('<html >');
-        a.document.write(`<body class='printDiv' style='background-image: url(${backgroundImg})'> <br>`);
-        a.document.write(divContents);
-        a.document.write(`</body></html>`);
-        a.document.close();
-        a.print();
+
+
 
         this.setState({ ...this.state, showFinalizeModal: false })
     }
@@ -455,6 +475,9 @@ export default class PerformSaleComponent extends React.Component {
             <div>{
                 //Modal. This will be used as popup to assign price to an item
             }
+
+
+
                 <Modal animation={false} show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header >
                         <Modal.Title>Adding item price</Modal.Title>
@@ -474,11 +497,11 @@ export default class PerformSaleComponent extends React.Component {
 
                 <Modal className='printDev' animation={false} show={this.state.showFinalizeModal} onHide={this.handleCloseFinalizePurchase} backdrop="static" size='lg'>
                     <Modal.Header >
-                        <Modal.Title >Payment Confirmation</Modal.Title>
+                        <Modal.Title >Purchase Review. Check For Correctness</Modal.Title>
                     </Modal.Header>
                     <Modal.Body id='receiptBody'>
                         {
-                            this.receiptPrinting()
+                            this.reviewPurchase()
                             //this.reviewPurchase()
                         }
                     </Modal.Body>
@@ -557,13 +580,15 @@ export default class PerformSaleComponent extends React.Component {
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Item ID</th>
+                                        <th>Shipment Date</th>
                                         <th>Item Description</th>
                                         <th>Current Stock</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {this.printInventory(this.state.itemType,this.state.brand)}
+                                    {this.printInventory(this.state.itemType, this.state.brand)}
                                 </tbody>
                             </table>
 
@@ -598,6 +623,7 @@ export default class PerformSaleComponent extends React.Component {
                             <thead>
                                 <tr>
                                     <th>#</th>
+                                    <th>Item ID</th>
                                     <th>Item Description</th>
                                     <th>Qty</th>
                                     <th>Unit Price</th>
