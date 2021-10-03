@@ -248,7 +248,7 @@ export default class PerformSaleComponent extends React.Component {
         return this.state.inventory.map((item, index) => {
             // return this.inventory.map((item, index) => {
             if (item.itemType === neededItemType && this.state.brand === '') {
-                console.log(item)
+               
                 return <tr key={index}>
                     <td key={index}>{index + 1}</td>
                     <td >{item.itemID}</td>
@@ -312,8 +312,8 @@ export default class PerformSaleComponent extends React.Component {
         }
     }
 
- 
-  
+
+
     reviewPurchase = () => {
 
         let subTotal = 0
@@ -351,13 +351,39 @@ export default class PerformSaleComponent extends React.Component {
         </div>
     }
 
+
+    reset = () => {
+        this.setState({
+            ...this.state,
+            itemType: '',
+            brand: '',
+            itemModel: '',
+            processor: '',
+            ramSize: '',
+            hddSize: '',
+            quantity: '',
+            unitPrice: '',
+            generation: '',
+            cart: [],
+            laptopBrandVisibility: true,
+            currentItem: null,
+            currentItemSupposedPrice: 0,
+            searchCustomer: '',
+            showSearchCustomerModal: false,
+            customer: null,
+            total: 0,
+           // inventory: [],
+            //customers: [],
+            soldItemsSaved: ''
+        })
+    }
     handleSavePurchase = () => {
 
         let total = 0
         let extractedCart = this.state.cart
         let itemsSoldDescription = ''
         console.log('cart is ', extractedCart)
-        extractedCart.map((item, index) => { 
+        extractedCart.map((item, index) => {
             let subTotal = item.quantity * item.salesPrice
             total += subTotal
             itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' @' + item.salesPrice + ' - '
@@ -370,28 +396,29 @@ export default class PerformSaleComponent extends React.Component {
             soldItemsSummary: itemsSoldDescription,
             cart: extractedCart
         }
-        
+
         var a = window.open('', '');
 
         axios.post(url.url + "/saveSale", finalSale)
             .then(result => {
-                console.log('sales posted', result)
-                this.setState({ ...this.state, soldItemsSaved: result.data.ItemsSold })
+               // console.log('sales posted', result)
+               // this.setState({ ...this.state, soldItemsSaved: result.data.ItemsSold })
 
+               this.reset()
                 let soldItemsSaved = result.data.ItemsSold
                 let itemsTemp = soldItemsSaved.itemsSoldSummary
                 let items = []
                 items = itemsTemp.split('-')
 
-        
+
                 //a.document.body.style.backgroundImage = `url(${backgroundImg})`;
                 a.document.write('<html >');
                 a.document.write(`<body class='printDivContent' style='background-image: url(${backgroundImg})'> <br>`);
-        
+
                 a.document.write('<h3 align="center"> Computer Village Store </h3>');
                 a.document.write(`<h4 align="center"> Située au COLLEG L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h4>`);
                 a.document.write(`<h5 align="center"> Merci Pour Votre Achat/ Thank You For Your Purchase.  </h5>`);
-                
+
                 a.document.write(`<hr>`);
 
                 a.document.write('<table >');
@@ -403,7 +430,7 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write('</table>');
                 a.document.write('<br>');
 
-                
+
                 a.document.write('<table >');
                 items.forEach(ele => {
                     if (ele !== " ") {
