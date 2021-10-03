@@ -255,6 +255,7 @@ export default class PerformSaleComponent extends React.Component {
                     <td >{item.shipmentCode}</td>
                     <td>{item.itemDescription}  </td>
                     <td>{item.quantity}</td>
+                    <td>{item.quantitySold}</td>
                     <td>
                         <button type='button' onClick={() => this.addItem(item)} className='btn btn-primary'>+</button>
                     </td>
@@ -498,7 +499,7 @@ export default class PerformSaleComponent extends React.Component {
     }
 
     render() {
-        return <div className='container'>
+        return <div >
             <div>{
                 //Modal. This will be used as popup to assign price to an item
             }
@@ -568,7 +569,7 @@ export default class PerformSaleComponent extends React.Component {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <div className='row'>
+                <div className='row mx-2'>
                     <div className='col-5 card'>
                         <div className='card-header bg-info'><b>Search Item Needed For Purchase</b></div>
                         <table className='table'>
@@ -610,7 +611,8 @@ export default class PerformSaleComponent extends React.Component {
                                         <th>Item ID</th>
                                         <th>Shipment Date</th>
                                         <th>Item Description</th>
-                                        <th>Current Stock</th>
+                                        <th>Initial Stock</th>
+                                        <th>Sold</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>

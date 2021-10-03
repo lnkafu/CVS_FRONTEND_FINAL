@@ -36,7 +36,7 @@ export default class ViewSaleComponent extends React.Component {
         } else {
             return sales.map((item, index) => {
                 if (item.customerName.toLowerCase().includes(this.state.searchField.toLowerCase())  || item.itemsSoldSummary.toLowerCase().includes(this.state.searchField.toLowerCase()) ) {
-                    return <tr key={index}>
+                    return <tr key={index} >
                         <td>{item.date}</td>
                         <td>{item.confirmationNumber}</td>
                         <td>{item.customerName}</td>
@@ -67,10 +67,10 @@ export default class ViewSaleComponent extends React.Component {
 
     }
     render() {
-        return <div>
-            <div className='card-header bg-info'>
+        return <div className='row mx-2'>
+            <div className='card-header bg-info mx-2'>
                 <h4> SALES PERFORMED</h4>
-                <div className="input-group mb-3">
+                <div className="input-group">
                     <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Sale Record" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
                         <button className="btn btn-outline-dark" type="button" onClick={this.handleShowSearchCustomer}>Search</button>
@@ -94,7 +94,7 @@ export default class ViewSaleComponent extends React.Component {
                     </tbody>
                 </table>
             </div>
-            <p>View sale component works</p>
+          
         </div>
     }
 }

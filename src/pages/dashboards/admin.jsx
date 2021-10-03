@@ -28,40 +28,40 @@ class AdminDashBoard extends React.Component {
     //     console.log(user)
     //     if (!user) history.push('/Login')
     // }
-    processUser = ()=>{
+    processUser = () => {
         const { history } = this.props
         let user = this.state.user
         if (user === null) history.push('/Login')
         else {
             return <div>
-                <ProfileComponent user = {user}/>
+                <ProfileComponent user={user} />
             </div>
         }
     }
 
-    logout = ()=>{
+    logout = () => {
         const { history } = this.props
         history.push('/Login')
-        sessionStorage.clear(); 
+        sessionStorage.clear();
     }
-    
-    getDate = ()=>{
+
+    getDate = () => {
         const dateObj = new Date()
-        const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let year = dateObj.getFullYear()
         let month = months[dateObj.getMonth()]
         let day = dateObj.getDate()
-        let date = month + ' ' + day +', '+ year
+        let date = month + ' ' + day + ', ' + year
         return date
     }
 
-    getWelcomeGreeting = ()=>{
-        if (this.state.user !== null && this.state.user.firstName !== null ) {
+    getWelcomeGreeting = () => {
+        if (this.state.user !== null && this.state.user.firstName !== null) {
             return <div>
-            <h6>Welcome: {this.state.user.firstName} , {this.state.user.lastName}</h6>
-        </div>
+                <h6>Welcome: {this.state.user.firstName} , {this.state.user.lastName}</h6>
+            </div>
         }
-        
+
     }
 
     render() {
@@ -74,7 +74,7 @@ class AdminDashBoard extends React.Component {
                         <tr>
                             <th><h2><b>Computer Village Store</b></h2></th>
                         </tr>
-                        
+
                     </thead>
                 </div>
             </div>
@@ -88,33 +88,56 @@ class AdminDashBoard extends React.Component {
                 <div className='col-4'>
                     <button className=' btn-danger ' onClick={this.logout}> Logout</button>
                 </div>
-                <hr/>
+                <hr />
             </div>
-            <Tabs animation="false" defaultActiveKey="addToInventory" id="uncontrolled-tab-example" className="mb-3">
-                <Tab eventKey="addToInventory" title="Add To Inventory">
-                    <AddToInventoryComponent />
+            <Tabs animation="false" defaultActiveKey="Inventory"  className="mb-0">
+                <Tab eventKey="Inventory" title="Inventory">
+                    <Tabs animation="false" defaultActiveKey="addToInventory" id="uncontrolled-tab-example" className="mb-3">
+                        <Tab eventKey="addToInventory" title="Add To Inventory">
+                            <AddToInventoryComponent />
+                        </Tab>
+                        <Tab eventKey="updateInventory" title="Update Inventory">
+                            <UpdateInventoryComponent />
+                        </Tab>
+                        <Tab eventKey="currentInventory" title="Current Inventory">
+                            <ViewInventoryComponent />
+                        </Tab>
+                        
+                        <Tab eventKey="addToInventory" title="Add To PreInventory">
+                        </Tab>
+                        <Tab eventKey="updateInventory" title="Update PreInventory">
+                        </Tab>
+                        <Tab eventKey="currentInventory" title="Promote PreInventory">
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="updateInventory" title="Update Inventory">
-                    <UpdateInventoryComponent/>
+
+                <Tab eventKey="Sale" title="Sale">
+                    <Tabs animation="false" defaultActiveKey="performSale" id="uncontrolled-tab-example" className="mb-3">
+                        <Tab eventKey="performSale" title="Perform Sale">
+                            <PerformSaleComponent />
+                        </Tab>
+                        <Tab eventKey="viewSales" title="View Sales">
+                            <ViewSaleComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="currentInventory" title="Current Inventory">
-                    <ViewInventoryComponent/>
+
+                <Tab eventKey="Customers" title="Customers">
+                    <Tabs animation="false" defaultActiveKey="addCustomer"  className="mb-3">
+                        <Tab eventKey="addCustomer" title="Add Customer">
+                            <AddCustomerComponent />
+                        </Tab>
+                        <Tab eventKey="viewCustomer" title="View Customer">
+                            <ViewCustomersComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="performSale" title="Perform Sale">
-                    <PerformSaleComponent />
-                </Tab>
-                <Tab eventKey="viewSales" title="View Sales">
-                    <ViewSaleComponent />
-                </Tab>
-                <Tab eventKey="addCustomer" title="Add Customer">
-                    <AddCustomerComponent />
-                </Tab>
-                <Tab eventKey="viewCustomer" title="View Customer">
-                    <ViewCustomersComponent />
-                </Tab>
+
+
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
-                    
+
                 </Tab>
             </Tabs>
         </div>
