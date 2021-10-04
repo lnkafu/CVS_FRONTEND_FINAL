@@ -189,7 +189,7 @@ export default class PerformSaleComponent extends React.Component {
             return <button className='btn btn-primary' onClick={() => this.handleShow(itm)}>Add Price</button>
         }
         else {
-            return itm.salesPrice + ' frs'
+            return itm.salesPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' frs'
         }
     }
 
@@ -197,7 +197,7 @@ export default class PerformSaleComponent extends React.Component {
         if (itm.salesPrice === undefined || itm.salesPrice === 0) {
             return 0
         }
-        return itm.quantity * itm.salesPrice
+        return (itm.quantity * itm.salesPrice).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
     printCart = () => {
         // console.log(this.state.cart)
@@ -248,8 +248,18 @@ export default class PerformSaleComponent extends React.Component {
                 console.log('err occurred getting customers', err)
             })
     }
+    reGetInventory = () => {
+        axios.get(url.url + "/getInventories")
+            .then(result => {
+                var inventoryTemp = result.data.Data
+                this.setState({ ...this.state, inventory: inventoryTemp })
+            })
+            .catch(err => {
+                console.log('err occurred ', err)
+            })
+    }
 
-    reGetCustomers = ()=> {
+    reGetCustomers = () => {
         axios.get(url.url + "/customers")
             .then(result => {
                 // console.log('customers got on front end')
@@ -267,7 +277,7 @@ export default class PerformSaleComponent extends React.Component {
         return this.state.inventory.map((item, index) => {
             // return this.inventory.map((item, index) => {
             if (item.itemType === neededItemType && this.state.brand === '') {
-               
+
                 return <tr key={index}>
                     <td key={index}>{index + 1}</td>
                     <td >{item.itemID}</td>
@@ -345,7 +355,7 @@ export default class PerformSaleComponent extends React.Component {
             itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' - '
             return <tr key={index}>
                 <td>{item.quantity} {item.itemDescription} </td>
-                <td>{subTotal}frs</td>
+                <td>{subTotal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}frs</td>
             </tr>
         })
 
@@ -373,9 +383,10 @@ export default class PerformSaleComponent extends React.Component {
 
 
     reset = () => {
+        this.reGetInventory()
         this.setState({
             ...this.state,
-            itemType: '',
+            //itemType: '',
             brand: '',
             itemModel: '',
             processor: '',
@@ -392,7 +403,7 @@ export default class PerformSaleComponent extends React.Component {
             showSearchCustomerModal: false,
             customer: null,
             total: 0,
-           // inventory: [],
+             //inventory: this.reGetInventory,
             //customers: [],
             soldItemsSaved: ''
         })
@@ -421,10 +432,10 @@ export default class PerformSaleComponent extends React.Component {
 
         axios.post(url.url + "/saveSale", finalSale)
             .then(result => {
-               // console.log('sales posted', result)
-               // this.setState({ ...this.state, soldItemsSaved: result.data.ItemsSold })
+                // console.log('sales posted', result)
+                // this.setState({ ...this.state, soldItemsSaved: result.data.ItemsSold })
 
-               this.reset()
+                this.reset()
                 let soldItemsSaved = result.data.ItemsSold
                 let itemsTemp = soldItemsSaved.itemsSoldSummary
                 let items = []
@@ -468,9 +479,9 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write('<footer>');
                 a.document.write('<p>Votre entreprise est très appréciée. Nous espérons vous revoir bientôt. Pour la validité de cet achat, veuillez nous contacter avec votre numéro de confirmation. </p>');
                 a.document.write('<p>Your business is highly appreciated. We hope to see you again. For validity of this purchase, please contact us with your confirmation number. </p>');
-               
+
                 a.document.write(`<p> Vendu par/ (Sold By): ${this.state.user}</p>`);
-               
+
                 a.document.write('</footer>');
                 a.document.write('</html >');
                 a.document.close();
