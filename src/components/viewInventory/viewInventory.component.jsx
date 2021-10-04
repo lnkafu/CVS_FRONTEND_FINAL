@@ -23,7 +23,7 @@ export default class ViewInventoryComponent extends React.Component {
     printSales = () => {
         let inventory = this.state.inventory
         if (this.state.searchField === '') {
-            return inventory.map((item, index) => {
+            return inventory.reverse().map((item, index) => {
                 return <tr key={index}>
                     <td>{index+1}</td>
                     <td>{item.itemID}</td>
@@ -40,7 +40,7 @@ export default class ViewInventoryComponent extends React.Component {
                 </tr>
             })
         } else {
-            return inventory.map((item, index) => {
+            return inventory.reverse().map((item, index) => {
                 if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{index+1}</td>
@@ -79,10 +79,23 @@ export default class ViewInventoryComponent extends React.Component {
     componentDidUpdate() {
 
     }
+
+    reGetInventory = ()=> {
+        axios.get(url.url+"/getInventories")
+            .then(result => {
+                //console.log('inventory is ', result.data.Data)
+                var inventoryTemp = result.data.Data
+                this.setState({ ...this.state, inventory: inventoryTemp })
+                // console.log('salesTemp is ', salesTemp)
+            })
+            .catch(err => {
+                console.log('err occurred ', err)
+            })
+    }
     render() {
         return <div>
             <div className='card-header bg-info'>
-                <h4> Current Inventory</h4>
+                <h4> Current Inventory <button className='btn btn-dark' onClick={this.reGetInventory}> Refresh List</button> </h4>
                 <div className="input-group mb-3">
                     <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By Item type OR Item Model" aria-describedby="basic-addon2" />
                     <div className="input-group-append">

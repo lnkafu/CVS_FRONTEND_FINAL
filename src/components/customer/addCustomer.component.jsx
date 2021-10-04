@@ -52,6 +52,7 @@ export default class AddCustomerComponent extends React.Component {
             })
             .catch(err => {
                 console.log(err)
+                alert("Customer Not Added")
             })
             e.preventDefault()
     }

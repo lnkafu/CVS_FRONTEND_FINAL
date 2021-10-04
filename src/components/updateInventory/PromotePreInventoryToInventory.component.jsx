@@ -68,7 +68,7 @@ export default class PromotePreInventoryToInventoryComponent extends React.Compo
     printPreInventory = () => {
         let preInventory = this.state.preInventory
         if (this.state.searchField === '') {
-            return preInventory.map((item, index) => {
+            return preInventory.reverse().map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
@@ -84,7 +84,7 @@ export default class PromotePreInventoryToInventoryComponent extends React.Compo
                 </tr>
             })
         } else {
-            return preInventory.map((item, index) => {
+            return preInventory.reverse().map((item, index) => {
                 if (item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemID}</td>
@@ -133,12 +133,24 @@ export default class PromotePreInventoryToInventoryComponent extends React.Compo
     componentDidUpdate() {
 
     }
+    reGetPreInventory = ()=> {
+        axios.get(url.url + "/getPreInventories")
+            .then(result => {
+                //console.log('inventory is ', result.data.Data)
+                var preInventoryTemp = result.data.Data
+                this.setState({ ...this.state, preInventory: preInventoryTemp })
+                // console.log('salesTemp is ', salesTemp)
+            })
+            .catch(err => {
+                console.log('err occurred ', err)
+            })
+    }
     render() {
         return <div className='row'>
             <div className='col-8'>
                 <div className='card'>
                     <div className='card-header bg-warning'>
-                        <h4> Current Items in preInventory State</h4>
+                        <h4> Current Items in preInventory State <button className='btn btn-dark btn-rounded' onClick={this.reGetPreInventory}> Refresh List</button> </h4>
                         <div className="input-group mb-3">
                             <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
                             <div className="input-group-append">

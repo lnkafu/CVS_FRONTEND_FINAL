@@ -10,6 +10,8 @@ import { withRouter, Link } from 'react-router-dom';
 import ProfileComponent from '../../components/profile/profile.component'
 import ViewInventoryComponent from '../../components/viewInventory/viewInventory.component'
 import UpdateInventoryComponent from '../../components/updateInventory/updateInventory.component'
+import AddToPreInvenotryComponent from '../../components/savingToInventory/AddToPreInventory.component'
+import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component'
 
 class ManagerDashBoard extends React.Component {
     constructor(props) {
@@ -85,7 +87,7 @@ class ManagerDashBoard extends React.Component {
                 </div>
                 <hr/>
             </div>
-            <Tabs animation="false" defaultActiveKey="addToInventory" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs animation="false" defaultActiveKey="performSale" id="uncontrolled-tab-example" className="mb-3">
         
                 <Tab eventKey="currentInventory" title="Current Inventory">
                     <ViewInventoryComponent/>
@@ -101,6 +103,12 @@ class ManagerDashBoard extends React.Component {
                 </Tab>
                 <Tab eventKey="viewCustomer" title="View Customer">
                     <ViewCustomersComponent />
+                </Tab>
+                <Tab eventKey="addToPreInventory" title="Add To PreInventory">
+                    <AddToPreInvenotryComponent />
+                </Tab>
+                <Tab eventKey="viewPreInventory" title="View/Update PreInventory">
+                    <UpdatePreInventoryComponent />
                 </Tab>
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}

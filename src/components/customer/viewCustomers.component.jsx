@@ -25,7 +25,7 @@ export default class ViewCustomersComponent extends React.Component {
         let customers = this.state.customers
       //  console.log('customers are: ', customers)
         if (this.state.searchField === '') {
-            return customers.map((customer, index) => {
+            return customers.reverse().map((customer, index) => {
                 return <tr key={index}>
                     <td>{customer.date}</td>
                     <td>{customer.name}</td>
@@ -36,7 +36,7 @@ export default class ViewCustomersComponent extends React.Component {
                 </tr>
             })
         } else {
-            return customers.map((customer, index) => {
+            return customers.reverse().map((customer, index) => {
                 if (customer.name.toLowerCase().includes(this.state.searchField.toLowerCase()) ) {
                     return <tr key={index}>
                         <td>{customer.date}</td>
@@ -54,6 +54,17 @@ export default class ViewCustomersComponent extends React.Component {
 
 
     }
+    reGetCustomers = ()=> {
+        axios.get(url.url+"/customers")
+            .then(result => {
+                var customersTemp = result.data.Data
+                this.setState({ ...this.state, customers: customersTemp })
+               // console.log('customerTemp is ', customersTemp)
+            })
+            .catch(err => {
+                console.log('err occurred ', err)
+            })
+    }
 
     componentDidMount() {
         axios.get(url.url+"/customers")
@@ -69,10 +80,11 @@ export default class ViewCustomersComponent extends React.Component {
     componentDidUpdate() {
 
     }
+    
     render() {
         return <div>
             <div className='card-header bg-info'>
-                <h4>  Customers</h4>
+                <h4>  Customers <button className='btn btn-dark' onClick={this.reGetCustomers}> Refresh List</button> </h4>
                 <div className="input-group mb-3">
                     <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Type customer's name to search" aria-describedby="basic-addon2" />
                 </div>
