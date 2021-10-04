@@ -249,6 +249,17 @@ export default class PerformSaleComponent extends React.Component {
             })
     }
 
+    reGetCustomers = ()=> {
+        axios.get(url.url + "/customers")
+            .then(result => {
+                // console.log('customers got on front end')
+                var customersTemp = result.data.Data
+                this.setState({ ...this.state, customers: customersTemp })
+            })
+            .catch(err => {
+                console.log('err occurred getting customers', err)
+            })
+    }
     printInventory = (neededItemType, neededBrand) => {
         let inventory = []
         // console.log('inventory is ', this.state.inventory)
@@ -638,6 +649,7 @@ export default class PerformSaleComponent extends React.Component {
                     <div className='col-7 '>
                         <div className='card-header bg-primary'>
                             <div className="input-group mb-3">
+                                <button className='btn btn-dark' onClick={this.reGetCustomers}>Refresh List</button>
                                 <input type="text" name='searchCustomer' onChange={this.handleChange} className="form-control" placeholder="Search Customer by Name or Phone Number" aria-label="Recipient's username" aria-describedby="basic-addon2" />
                                 <div className="input-group-append">
                                     <button className="btn btn-outline-dark" type="button" onClick={this.handleShowSearchCustomer}>Search</button>
