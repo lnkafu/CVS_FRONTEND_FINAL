@@ -225,7 +225,7 @@ export default class PerformSaleComponent extends React.Component {
         if (data != null) {
             data = JSON.parse(data)
             //console.log('User is', data)
-            this.setState({ ...this.state, addedBy: data.lastName + " " + data.firstName })
+            this.setState({ ...this.state, user: data.lastName + " " + data.firstName })
         }
 
         document.title = 'Perform Sale'
