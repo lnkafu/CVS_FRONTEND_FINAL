@@ -73,6 +73,19 @@ export default class AddToPreInvenotryComponent extends React.Component {
                 ...this.state,
                 cart: tempCart,
 
+                itemType: '',
+                brand: '',
+                itemModel: '',
+                processor: '',
+                ramSize: '',
+                hddSize: '',
+                quantity: '',
+                unitPrice: '',
+                generation: '',
+                shipmentCode: '',
+                quantitySold: 0,
+                addedBy: '',
+
             }
         )
         console.log(this.state.cart)
@@ -110,7 +123,6 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     generation: '',
                     shipmentCode: '',
                     quantitySold: 0,
-                    addedBy: '',
                     cart: []
                 })
             })
