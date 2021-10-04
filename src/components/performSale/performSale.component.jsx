@@ -417,12 +417,12 @@ export default class PerformSaleComponent extends React.Component {
         extractedCart.map((item, index) => {
             let subTotal = item.quantity * item.salesPrice
             total += subTotal
-            itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' @' + item.salesPrice + ' - '
+            itemsSoldDescription = itemsSoldDescription + item.quantity + ' ' + item.itemDescription + ' @' + item.salesPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + ' - '
 
         })
         let finalSale = {
             total: total,
-            soldBy: " ",
+            soldBy: this.state.user,
             customer: this.state.customer,
             soldItemsSummary: itemsSoldDescription,
             cart: extractedCart
@@ -447,7 +447,7 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write(`<body class='printDivContent' style='background-image: url(${backgroundImg})'> <br>`);
 
                 a.document.write('<h3 align="center"> Computer Village Store </h3>');
-                a.document.write(`<h4 align="center"> Située au COLLEGE L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h4>`);
+                a.document.write(`<h5 align="center"> Située au COLLEGE L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h5>`);
                 a.document.write(`<h5 align="center"> Merci Pour Votre Achat/ Thank You For Your Purchase.  </h5>`);
 
                 a.document.write(`<hr>`);
@@ -465,7 +465,7 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write('<table >');
                 items.forEach(ele => {
                     if (ele !== " ") {
-                        a.document.write(`<tr> <td>  ${ele}frs </td>  </tr>`);
+                        a.document.write(`<tr> <td> - ${ele}frs </td>  </tr>`);
                     }
                 })
                 a.document.write('</table>');
@@ -481,6 +481,7 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write('<p>Your business is highly appreciated. We hope to see you again. For validity of this purchase, please contact us with your confirmation number. </p>');
 
                 a.document.write(`<p> Vendu par/ (Sold By): ${this.state.user}</p>`);
+                a.document.write(`<p> Date: ${new Date().toLocaleString()}</p>`);
 
                 a.document.write('</footer>');
                 a.document.write('</html >');
