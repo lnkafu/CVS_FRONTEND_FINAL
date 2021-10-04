@@ -10,6 +10,9 @@ import { withRouter, Link } from 'react-router-dom';
 import ProfileComponent from '../../components/profile/profile.component'
 import ViewInventoryComponent from '../../components/viewInventory/viewInventory.component'
 import UpdateInventoryComponent from '../../components/updateInventory/updateInventory.component'
+import AddToPreInvenotryComponent from '../../components/savingToInventory/AddToPreInventory.component'
+import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component'
+import PromotePreInventoryToInventoryComponent from '../../components/updateInventory/PromotePreInventoryToInventory.component'
 
 class AdminDashBoard extends React.Component {
     constructor(props) {
@@ -102,12 +105,15 @@ class AdminDashBoard extends React.Component {
                         <Tab eventKey="currentInventory" title="Current Inventory">
                             <ViewInventoryComponent />
                         </Tab>
-                        
-                        <Tab eventKey="addToInventory" title="Add To PreInventory">
+
+                        <Tab eventKey="addToPreInventory" title="Add To PreInventory">
+                            <AddToPreInvenotryComponent />
                         </Tab>
-                        <Tab eventKey="updateInventory" title="Update PreInventory">
+                        <Tab eventKey="updatePreInventory" title="Update PreInventory">
+                            <UpdatePreInventoryComponent />
                         </Tab>
-                        <Tab eventKey="currentInventory" title="Promote PreInventory">
+                        <Tab eventKey="promotePreInventory" title="Promote PreInventory">
+                            <PromotePreInventoryToInventoryComponent />
                         </Tab>
                     </Tabs>
                 </Tab>

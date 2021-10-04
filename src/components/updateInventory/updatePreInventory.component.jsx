@@ -3,11 +3,11 @@ import React from 'react'
 import axios from 'axios'
 import url from '../config/url'
 
-export default class UpdateInventoryComponent extends React.Component {
+export default class UpdatePreInventoryComponent extends React.Component {
     constructor() {
         super()
         this.state = {
-            inventory: [],
+            preInventory: [],
             cart: [],
             searchField: ''
         }
@@ -53,7 +53,7 @@ export default class UpdateInventoryComponent extends React.Component {
             cart.push(item)
         }
         this.setState({ ...this.state, cart: cart })
-       // console.log(this.state.cart)
+        console.log(this.state.cart)
     }
 
 
@@ -81,10 +81,10 @@ export default class UpdateInventoryComponent extends React.Component {
         console.log(this.state.cart)
     }
 
-    printInventory = () => {
-        let inventory = this.state.inventory
+    printPreInventory = () => {
+        let preInventory = this.state.preInventory
         if (this.state.searchField === '') {
-            return inventory.map((item, index) => {
+            return preInventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
@@ -102,8 +102,8 @@ export default class UpdateInventoryComponent extends React.Component {
                 </tr>
             })
         } else {
-            return inventory.map((item, index) => {
-                if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+            return preInventory.map((item, index) => {
+                if (item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemID}</td>
                         <td>{item.shipmentCode}</td>
@@ -127,26 +127,22 @@ export default class UpdateInventoryComponent extends React.Component {
 
     }
 
-    updateInventory =  ()=>{
-        let inventoryToBeUpdated = this.state.cart
-        axios.post(url.url+"/updateInventory", inventoryToBeUpdated)
+    updatePreInventory =  ()=>{
+        let preInventoryToBeUpdated = this.state.cart
+        axios.put(url.url+"/updatePreInventory", preInventoryToBeUpdated)
         .then(result => {
-            console.log('result of update inventory is:', result)
-            this.setState({...this.state,
-                cart: []
-            })
-            //let retrievedInventory 
+            console.log('result of update preInventory is:', result)
         }).catch(err => {
             console.log("error", err)
         })
     }
 
     componentDidMount() {
-        axios.get(url.url+"/getInventories")
+        axios.get(url.url+"/getPreInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
-                var inventoryTemp = result.data.Data
-                this.setState({ ...this.state, inventory: inventoryTemp })
+                var preInventoryTemp = result.data.Data
+                this.setState({ ...this.state, preInventory: preInventoryTemp })
                 // console.log('salesTemp is ', salesTemp)
             })
             .catch(err => {
@@ -160,10 +156,10 @@ export default class UpdateInventoryComponent extends React.Component {
         return <div className='row'>
             <div className='col-8'>
                 <div className='card'>
-                    <div className='card-header bg-info'>
-                        <h4> Current Inventory</h4>
+                    <div className='card-header bg-warning'>
+                        <h4> Current Items in preInventory State</h4>
                         <div className="input-group mb-3">
-                            <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By Item type OR Item Model" aria-describedby="basic-addon2" />
+                            <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
                                 <button className="btn btn-outline-dark" type="button" onClick={this.handleShowSearchCustomer}>Search</button>
                             </div>
@@ -189,7 +185,7 @@ export default class UpdateInventoryComponent extends React.Component {
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.printInventory()}
+                                {this.printPreInventory()}
                             </tbody>
                         </table>
                     </div>
@@ -204,8 +200,8 @@ export default class UpdateInventoryComponent extends React.Component {
             <div className='col-4'>
                 <div className='card'>
                     <div className='card-header bg-warning'>
-                        <h6>Items to be Updated in the Inventory</h6>
-                        <button className='btn btn-primary' onClick={this.updateInventory}>Save And Update Inventory</button>
+                        <h6>Items to be Updated in the PreInventory</h6>
+                        <button className='btn btn-primary' onClick={this.updateInventory}>Save And Update PreInventory</button>
                     </div>
                     <div className='card-body'>
                         <table className='table table-striped table-warning table-hover table-bordered'>

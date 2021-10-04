@@ -3,11 +3,11 @@ import React from 'react'
 import axios from 'axios'
 import url from '../config/url'
 
-export default class UpdateInventoryComponent extends React.Component {
+export default class PromotePreInventoryToInventoryComponent extends React.Component {
     constructor() {
         super()
         this.state = {
-            inventory: [],
+            preInventory: [],
             cart: [],
             searchField: ''
         }
@@ -28,63 +28,47 @@ export default class UpdateInventoryComponent extends React.Component {
                 <td>{item.itemID}</td>
                 <td>{item.itemDescription}</td>
                 <td>{item.quantity}</td>
+                <td><button className='btn btn-success' onClick={() => this.undo(item)}><b>Undo</b></button></td>
+
             </tr>
         })
     }
 
-    increaseQuantity = (item) => {
+    add = async (item) => {
         let cart = this.state.cart
-        let added = false
-        if (cart.length === 0) {
-            item.quantity = item.quantity + 1
-            cart.push(item)
-            added = true
-        }
-        else {
-            cart.forEach((itm, index) => {
-                if (itm.itemID === item.itemID) {
-                    itm.quantity = itm.quantity + 1
-                    added = true
-                }
-            })
-        }
-        if (!added) {
-            item.quantity = item.quantity + 1
-            cart.push(item)
-        }
-        this.setState({ ...this.state, cart: cart })
-       // console.log(this.state.cart)
+        cart.push(item)
+
+
+        let preInventoryTemp = []
+        preInventoryTemp = await this.state.preInventory.filter(itm => item.itemID !== itm.itemID)
+
+        this.setState({
+            ...this.state,
+            cart: cart,
+            preInventory: preInventoryTemp
+        })
     }
 
 
-    decreaseQuantity = (item) => {
-        let cart = this.state.cart
-        let added = false
-        if (cart.length === 0) {
-            item.quantity = item.quantity - 1
-            cart.push(item)
-            added = true
-        }
-        else {
-            cart.forEach((itm, index) => {
-                if (itm.itemID === item.itemID) {
-                    itm.quantity = itm.quantity - 1
-                    added = true
-                }
-            })
-        }
-        if (!added) {
-            item.quantity = item.quantity - 1
-            cart.push(item)
-        }
-        this.setState({ ...this.state, cart: cart })
-        console.log(this.state.cart)
+    undo = async (item) => {
+        let preInventory = this.state.preInventory
+        preInventory.push(item)
+
+        let cartTemp = []
+        cartTemp = await this.state.cart.filter(itm => item.itemID !== itm.itemID)
+
+
+        this.setState({
+            ...this.state,
+            preInventory: preInventory,
+            cart: cartTemp
+        })
     }
 
-    printInventory = () => {
-        let inventory = this.state.inventory
+    printPreInventory = () => {
+        let preInventory = this.state.preInventory
         if (this.state.searchField === '') {
-            return inventory.map((item, index) => {
+            return preInventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
@@ -96,14 +80,12 @@ export default class UpdateInventoryComponent extends React.Component {
                     <td>{item.hddSize}</td>
                     <td>{item.generation}</td>
                     <td>{item.quantity}</td>
-                    <td>{item.quantitySold}</td>
-                    <td><button className='btn btn-primary' onClick={() => this.increaseQuantity(item)}><b>+</b></button></td>
-                    <td><button className='btn btn-danger' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
+                    <td><button className='btn btn-primary' onClick={() => this.add(item)}><b>+</b></button></td>
                 </tr>
             })
         } else {
-            return inventory.map((item, index) => {
-                if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+            return preInventory.map((item, index) => {
+                if (item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemID}</td>
                         <td>{item.shipmentCode}</td>
@@ -115,9 +97,7 @@ export default class UpdateInventoryComponent extends React.Component {
                         <td>{item.hddSize}</td>
                         <td>{item.generation}</td>
                         <td>{item.quantity}</td>
-                        <td>{item.quantitySold}</td>
-                        <td><button className='btn btn-primary' onClick={() => this.increaseQuantity(item)}><b>+</b></button></td>
-                        <td><button className='btn btn-danger' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
+                        <td><button className='btn btn-primary' onClick={() => this.add(item)}><b>+</b></button></td>
                     </tr>
                 }
 
@@ -127,26 +107,23 @@ export default class UpdateInventoryComponent extends React.Component {
 
     }
 
-    updateInventory =  ()=>{
-        let inventoryToBeUpdated = this.state.cart
-        axios.post(url.url+"/updateInventory", inventoryToBeUpdated)
-        .then(result => {
-            console.log('result of update inventory is:', result)
-            this.setState({...this.state,
-                cart: []
+    promotePreInventory = () => {
+        let preInventoryToBeUpdated = this.state.cart
+        axios.put(url.url + "/promotePreInventory", preInventoryToBeUpdated)
+            .then(result => {
+                console.log('result of promoted preInventory is:', result)
+                this.setState({...this.state, cart: []})
+            }).catch(err => {
+                console.log("error", err)
             })
-            //let retrievedInventory 
-        }).catch(err => {
-            console.log("error", err)
-        })
     }
 
     componentDidMount() {
-        axios.get(url.url+"/getInventories")
+        axios.get(url.url + "/getPreInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
-                var inventoryTemp = result.data.Data
-                this.setState({ ...this.state, inventory: inventoryTemp })
+                var preInventoryTemp = result.data.Data
+                this.setState({ ...this.state, preInventory: preInventoryTemp })
                 // console.log('salesTemp is ', salesTemp)
             })
             .catch(err => {
@@ -160,10 +137,10 @@ export default class UpdateInventoryComponent extends React.Component {
         return <div className='row'>
             <div className='col-8'>
                 <div className='card'>
-                    <div className='card-header bg-info'>
-                        <h4> Current Inventory</h4>
+                    <div className='card-header bg-warning'>
+                        <h4> Current Items in preInventory State</h4>
                         <div className="input-group mb-3">
-                            <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By Item type OR Item Model" aria-describedby="basic-addon2" />
+                            <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
                                 <button className="btn btn-outline-dark" type="button" onClick={this.handleShowSearchCustomer}>Search</button>
                             </div>
@@ -183,13 +160,11 @@ export default class UpdateInventoryComponent extends React.Component {
                                     <th>HDD Size</th>
                                     <th>Generation</th>
                                     <th>Quantity</th>
-                                    <th>Quantity Sold</th>
-                                    <th></th>
                                     <th></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {this.printInventory()}
+                                {this.printPreInventory()}
                             </tbody>
                         </table>
                     </div>
@@ -204,8 +179,8 @@ export default class UpdateInventoryComponent extends React.Component {
             <div className='col-4'>
                 <div className='card'>
                     <div className='card-header bg-warning'>
-                        <h6>Items to be Updated in the Inventory</h6>
-                        <button className='btn btn-primary' onClick={this.updateInventory}>Save And Update Inventory</button>
+                        <h6>Items to be Promoted From PreInventory State to Inventory Database.</h6>
+                        <button className='btn btn-primary' onClick={this.promotePreInventory}>Move Items From PreInventory to Inventory</button>
                     </div>
                     <div className='card-body'>
                         <table className='table table-striped table-warning table-hover table-bordered'>
@@ -213,6 +188,7 @@ export default class UpdateInventoryComponent extends React.Component {
                                 <th>Item ID</th>
                                 <th>Item Description</th>
                                 <th>Quantity</th>
+                                <th>Action</th>
                             </thead>
                             <tbody>
                                 {this.printCart()}

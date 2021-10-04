@@ -33,7 +33,8 @@ export default class PerformSaleComponent extends React.Component {
             total: 0,
             inventory: [],
             customers: [],
-            soldItemsSaved: ''
+            soldItemsSaved: '',
+            user: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -220,6 +221,13 @@ export default class PerformSaleComponent extends React.Component {
     }
 
     componentDidMount() {
+        let data = sessionStorage.getItem('user')
+        if (data != null) {
+            data = JSON.parse(data)
+            //console.log('User is', data)
+            this.setState({ ...this.state, addedBy: data.lastName + " " + data.firstName })
+        }
+
         document.title = 'Perform Sale'
         axios.get(url.url + "/getInventories")
             .then(result => {
@@ -417,7 +425,7 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write(`<body class='printDivContent' style='background-image: url(${backgroundImg})'> <br>`);
 
                 a.document.write('<h3 align="center"> Computer Village Store </h3>');
-                a.document.write(`<h4 align="center"> Située au COLLEG L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h4>`);
+                a.document.write(`<h4 align="center"> Située au COLLEGE L'AGAPE CITE CICAM, Tel: (+237) 679 700 008 / 657 951 753</h4>`);
                 a.document.write(`<h5 align="center"> Merci Pour Votre Achat/ Thank You For Your Purchase.  </h5>`);
 
                 a.document.write(`<hr>`);
@@ -449,6 +457,9 @@ export default class PerformSaleComponent extends React.Component {
                 a.document.write('<footer>');
                 a.document.write('<p>Votre entreprise est très appréciée. Nous espérons vous revoir bientôt. Pour la validité de cet achat, veuillez nous contacter avec votre numéro de confirmation. </p>');
                 a.document.write('<p>Your business is highly appreciated. We hope to see you again. For validity of this purchase, please contact us with your confirmation number. </p>');
+               
+                a.document.write(`<p> Vendu par/ (Sold By): ${this.state.user}</p>`);
+               
                 a.document.write('</footer>');
                 a.document.write('</html >');
                 a.document.close();

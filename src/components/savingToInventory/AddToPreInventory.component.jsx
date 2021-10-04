@@ -3,7 +3,7 @@ import React from 'react'
 import axios from 'axios'
 import url from '../config/url'
 
-export default class AddToCartComponent extends React.Component {
+export default class AddToPreInvenotryComponent extends React.Component {
 
     constructor(props) {
         super(props);
@@ -19,12 +19,20 @@ export default class AddToCartComponent extends React.Component {
             quantity: '',
             unitPrice: '',
             generation: '',
-            shipmentCode: 'cvb',
+            shipmentCode: '',
             quantitySold: 0,
-            addedBy: 'Lawrence',
+            addedBy: '',
             cart: []
         }
         this.handleChange = this.handleChange.bind(this);
+    }
+    componentDidMount() {
+        let data = sessionStorage.getItem('user')
+        if (data != null) {
+            data = JSON.parse(data)
+            //console.log('User is', data)
+            this.setState({ ...this.state, addedBy: data.lastName + " " + data.firstName })
+        }
     }
     handleChange(evt) {
         const value = evt.target.value;
@@ -35,19 +43,11 @@ export default class AddToCartComponent extends React.Component {
             [name]: value,
 
         });
-        // console.log(this.state)
-    }
-
-    componentDidMount() {
-        let data = sessionStorage.getItem('user')
-        if (data != null) {
-            data = JSON.parse(data)
-            //console.log('User is', data)
-            this.setState({ ...this.state, addedBy: data.lastName + " " + data.firstName })
-        }
+        console.log(this.state.cart)
     }
 
     addItem = () => {
+
         let tempCart = this.state.cart
         let item = {
             itemType: this.state.itemType,
@@ -93,10 +93,10 @@ export default class AddToCartComponent extends React.Component {
     }
     saveToDatabase = () => {
         let supposedInventory = this.state.cart
-        axios.post(url.url + "/saveInventory", supposedInventory)
+        axios.post(url.url + "/savePreInventory", supposedInventory)
             .then(result => {
                 console.log(result)
-                alert("Item Added to Inventory")
+                alert("item inserted")
                 this.setState({
                     ...this.state,
                     itemType: '',
@@ -137,22 +137,22 @@ export default class AddToCartComponent extends React.Component {
     }
 
     render() {
-        return <div className='container'>
-            <div className='row'>
+        return <div >
+            <div className='row mx-3'>
                 <div className='col-5 card'>
                     {//first div for inputs
                     }
-                    <div className='card-header bg-info'> Adding to Inventory</div>
+                    <div className='card-header bg-warning'> Adding to PreInventory. Items in PreInventory can then be added to Inventory By an Admin User</div>
                     <div className='row'>
                         <div className='col-3 '>Shipment Code:</div>
                         <div className='col-8'>
-                            <input className='form-control' type="date" name="shipmentCode" onChange={this.handleChange} />
+                            <input className='form-control' value={this.state.shipmentCode} type="date" name="shipmentCode" onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Item Type:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.itemType} name='itemType' onChange={this.handleChange} >
+                            <select className="form-control" name='itemType' value={this.state.itemType} onChange={this.handleChange} >
                                 <option> </option>
                                 <option>Laptop</option>
                                 <option>Desktop</option>
@@ -172,7 +172,7 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Brand:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.brand} name='brand' onChange={this.handleChange} >
+                            <select className="form-control" name='brand' value={this.state.brand} onChange={this.handleChange} >
                                 <option> </option>
                                 <option>Dell</option>
                                 <option>HP</option>
@@ -204,13 +204,13 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Item Model:</div>
                         <div className='col-8'>
-                            <input className='form-control' value={this.state.itemModel} type="text" name="itemModel" onChange={this.handleChange} />
+                            <input className='form-control' type="text" value={this.state.itemModel} name="itemModel" onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Processor:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.processor} name='processor' onChange={this.handleChange}>
+                            <select className="form-control" name='processor' value={this.state.processor} onChange={this.handleChange}>
                                 <option></option>
                                 <option>Core 2</option>
                                 <option> i3</option>
@@ -230,7 +230,7 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Ram_Size:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.ramSize} name="ramSize" onChange={this.handleChange}>
+                            <select className="form-control" name="ramSize" value={this.state.ramSize} onChange={this.handleChange}>
                                 <option> </option>
                                 <option>None</option>
                                 <option>Unknown</option>
@@ -250,7 +250,7 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>HDD_Size:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.hddSize} name="hddSize" onChange={this.handleChange}>
+                            <select className="form-control" name="hddSize" value={this.state.hddSize} onChange={this.handleChange}>
                                 <option> </option>
                                 <option>None</option>
                                 <option>Unknown</option>
@@ -277,7 +277,7 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Generation:</div>
                         <div className='col-8'>
-                            <select className="form-control" value={this.state.generation} name="generation" onChange={this.handleChange}>
+                            <select className="form-control" name="generation" value={this.state.generation} onChange={this.handleChange}>
                                 <option> </option>
                                 <option>Unknown</option>
                                 <option>1st gen</option>
@@ -297,13 +297,13 @@ export default class AddToCartComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '> Quantity:</div>
                         <div className='col-8'>
-                            <input className='form-control' value={this.state.quantity} type="number" name="quantity" onChange={this.handleChange} />
+                            <input className='form-control' type="number" name="quantity" value={this.state.quantity} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Unit Price:</div>
                         <div className='col-8'>
-                            <input className='form-control' value={this.state.unitPrice} type="number" name="unitPrice" onChange={this.handleChange} />
+                            <input className='form-control' type="number" name="unitPrice" value={this.state.unitPrice} onChange={this.handleChange} />
                         </div>
                     </div>
                     <div className='row'>
@@ -315,9 +315,9 @@ export default class AddToCartComponent extends React.Component {
                 </div>
                 <div className='col-7 card'>
                     <table>
-                        <thead className='card-header bg-info'>
+                        <thead className='card-header bg-warning'>
                             <tr>
-                                <th><h2>Items to be added to Inventory</h2> </th>
+                                <th><h2>Items to be added to PreInventory</h2> </th>
                                 <th>
                                     <button onClick={this.saveToDatabase} type="button" className="btn btn-dark btn-block">Save to Database</button>
                                 </th>

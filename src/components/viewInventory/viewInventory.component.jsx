@@ -26,6 +26,7 @@ export default class ViewInventoryComponent extends React.Component {
             return inventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{index+1}</td>
+                    <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
                     <td>{item.itemType}</td>
                     <td>{item.brand}</td>
@@ -43,6 +44,7 @@ export default class ViewInventoryComponent extends React.Component {
                 if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{index+1}</td>
+                        <td>{item.itemID}</td>
                         <td>{item.shipmentCode}</td>
                         <td>{item.itemType}</td>
                         <td>{item.brand}</td>
@@ -93,6 +95,7 @@ export default class ViewInventoryComponent extends React.Component {
                     <thead className='thead-primary'>
                         <tr>
                             <th>#</th>
+                            <th>Item ID</th>
                             <th>Shipment Code</th>
                             <th>Item Type</th>
                             <td>Item Brand</td>
