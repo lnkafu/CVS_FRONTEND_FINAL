@@ -84,7 +84,6 @@ export default class AddToPreInvenotryComponent extends React.Component {
                 generation: '',
                 shipmentCode: '',
                 quantitySold: 0,
-                addedBy: '',
 
             }
         )

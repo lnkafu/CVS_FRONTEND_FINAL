@@ -171,7 +171,7 @@ export default class UpdateInventoryComponent extends React.Component {
         axios.get(url.url + "/getInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
-                var inventoryTemp = result.data.Data
+                var inventoryTemp = result.data.Data.reverse()
                 this.setState({ ...this.state, inventory: inventoryTemp })
                 // console.log('salesTemp is ', salesTemp)
             })
