@@ -53,7 +53,7 @@ export default class UpdateInventoryComponent extends React.Component {
             cart.push(item)
         }
         this.setState({ ...this.state, cart: cart })
-       // console.log(this.state.cart)
+        // console.log(this.state.cart)
     }
 
 
@@ -82,7 +82,7 @@ export default class UpdateInventoryComponent extends React.Component {
     }
 
     printInventory = () => {
-        let inventory = this.state.inventory.reverse()
+        let inventory = this.state.inventory
         if (this.state.searchField === '') {
             return inventory.map((item, index) => {
                 return <tr key={index}>
@@ -127,25 +127,36 @@ export default class UpdateInventoryComponent extends React.Component {
 
     }
 
-    updateInventory =  ()=>{
+    updateInventory = () => {
         let inventoryToBeUpdated = this.state.cart
-        axios.post(url.url+"/updateInventory", inventoryToBeUpdated)
-        .then(result => {
-            console.log('result of update inventory is:', result)
-            this.setState({...this.state,
-                cart: []
+        axios.post(url.url + "/updateInventory", inventoryToBeUpdated)
+            .then(result => {
+                console.log('result of update inventory is:', result)
+                this.setState({
+                    ...this.state,
+                    cart: []
+                })
+               
+                axios.get(url.url + "/getInventories")
+                    .then(result => {
+                        //console.log('inventory is ', result.data.Data)
+                        var inventoryTemp = result.data.Data.reverse()
+                        this.setState({ ...this.state, inventory: inventoryTemp })
+                        // console.log('salesTemp is ', salesTemp)
+                    })
+                    .catch(err => {
+                        console.log('err occurred ', err)
+                    })
+            }).catch(err => {
+                console.log("error", err)
             })
-            //let retrievedInventory 
-        }).catch(err => {
-            console.log("error", err)
-        })
     }
 
     componentDidMount() {
-        axios.get(url.url+"/getInventories")
+        axios.get(url.url + "/getInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
-                var inventoryTemp = result.data.Data
+                var inventoryTemp = result.data.Data.reverse()
                 this.setState({ ...this.state, inventory: inventoryTemp })
                 // console.log('salesTemp is ', salesTemp)
             })
@@ -156,8 +167,8 @@ export default class UpdateInventoryComponent extends React.Component {
     componentDidUpdate() {
 
     }
-    reGetInventory = ()=> {
-        axios.get(url.url+"/getInventories")
+    reGetInventory = () => {
+        axios.get(url.url + "/getInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
                 var inventoryTemp = result.data.Data

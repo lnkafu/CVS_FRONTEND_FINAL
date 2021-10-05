@@ -82,7 +82,7 @@ export default class UpdatePreInventoryComponent extends React.Component {
     }
 
     printPreInventory = () => {
-        let preInventory = this.state.preInventory.reverse()
+        let preInventory = this.state.preInventory
         if (this.state.searchField === '') {
             return preInventory.map((item, index) => {
                 return <tr key={index}>
@@ -141,7 +141,7 @@ export default class UpdatePreInventoryComponent extends React.Component {
         axios.get(url.url+"/getPreInventories")
             .then(result => {
                 //console.log('inventory is ', result.data.Data)
-                var preInventoryTemp = result.data.Data
+                var preInventoryTemp = result.data.Data.reverse()
                 this.setState({ ...this.state, preInventory: preInventoryTemp })
                 // console.log('salesTemp is ', salesTemp)
             })
@@ -156,7 +156,7 @@ export default class UpdatePreInventoryComponent extends React.Component {
         axios.get(url.url+"/getPreInventories")
         .then(result => {
             //console.log('inventory is ', result.data.Data)
-            var preInventoryTemp = result.data.Data
+            var preInventoryTemp = result.data.Data.reverse()
             this.setState({ ...this.state, preInventory: preInventoryTemp })
             // console.log('salesTemp is ', salesTemp)
         })
