@@ -91,6 +91,12 @@ export default class AddCustomerComponent extends React.Component {
                         </div>
                     </div>
                     <div className='row'>
+                        <div className='col-3 '>Store Name: </div>
+                        <div className='col-8'>
+                            <input className='form-control' type="text" name="storeName" value={this.state.storeName} onChange={this.handleChange} />
+                        </div>
+                    </div>
+                    <div className='row'>
                         <div className='col-3 '></div>
                         <div className='col-8'>
                             <button  type="submit" className="btn btn-dark btn-block">Save to Database</button>
