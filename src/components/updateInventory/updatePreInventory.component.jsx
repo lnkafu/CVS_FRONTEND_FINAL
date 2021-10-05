@@ -82,9 +82,9 @@ export default class UpdatePreInventoryComponent extends React.Component {
     }
 
     printPreInventory = () => {
-        let preInventory = this.state.preInventory
+        let preInventory = this.state.preInventory.reverse()
         if (this.state.searchField === '') {
-            return preInventory.reverse().map((item, index) => {
+            return preInventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
@@ -101,7 +101,7 @@ export default class UpdatePreInventoryComponent extends React.Component {
                 </tr>
             })
         } else {
-            return preInventory.reverse().map((item, index) => {
+            return preInventory.map((item, index) => {
                 if (item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemID}</td>

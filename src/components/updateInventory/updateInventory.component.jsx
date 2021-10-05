@@ -82,9 +82,9 @@ export default class UpdateInventoryComponent extends React.Component {
     }
 
     printInventory = () => {
-        let inventory = this.state.inventory
+        let inventory = this.state.inventory.reverse()
         if (this.state.searchField === '') {
-            return inventory.reverse().map((item, index) => {
+            return inventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
@@ -102,7 +102,7 @@ export default class UpdateInventoryComponent extends React.Component {
                 </tr>
             })
         } else {
-            return inventory.reverse().map((item, index) => {
+            return inventory.map((item, index) => {
                 if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemID}</td>
