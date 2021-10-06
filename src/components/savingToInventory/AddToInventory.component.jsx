@@ -153,15 +153,18 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-3 '>Item Type:</div>
                         <div className='col-8'>
                             <select className="form-control" value={this.state.itemType} name='itemType' onChange={this.handleChange} >
-                                <option> </option>
                                 <option>Laptop</option>
+                                <option>Tower</option>
                                 <option>Desktop</option>
+                                <option>All-in-one</option>
                                 <option>Monitor</option>
                                 <option>TV</option>
                                 <option>Projector</option>
                                 <option>Keyboard</option>
                                 <option>Printer</option>
                                 <option>Mouse</option>
+                                <option>Ram</option>
+                                <option>HDD</option>
                                 <option>Power Cable</option>
                                 <option>VGA/Display Cable</option>
                                 <option>Other Accessories</option>
@@ -197,7 +200,6 @@ export default class AddToCartComponent extends React.Component {
                                 <option>LG</option>
                                 <option>HCL</option>
                                 <option>Others</option>
-                                <option>Unknown</option>
                             </select>
                         </div>
                     </div>
@@ -235,12 +237,11 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" value={this.state.ramSize} name="ramSize" onChange={this.handleChange}>
                                 <option> </option>
-                                <option>None</option>
-                                <option>Unknown</option>
                                 <option>1GB</option>
                                 <option>2GB</option>
                                 <option>3GB</option>
                                 <option>4GB</option>
+                                <option>5GB</option>
                                 <option>6GB</option>
                                 <option>8GB</option>
                                 <option>12GB</option>
@@ -255,8 +256,6 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" value={this.state.hddSize} name="hddSize" onChange={this.handleChange}>
                                 <option> </option>
-                                <option>None</option>
-                                <option>Unknown</option>
                                 <option>60GB</option>
                                 <option>100GB</option>
                                 <option>118GB</option>
@@ -282,7 +281,6 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" value={this.state.generation} name="generation" onChange={this.handleChange}>
                                 <option> </option>
-                                <option>Unknown</option>
                                 <option>1st gen</option>
                                 <option>2ns/3rd gen</option>
                                 <option>4th gen</option>

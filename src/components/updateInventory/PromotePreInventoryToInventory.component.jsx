@@ -113,6 +113,7 @@ export default class PromotePreInventoryToInventoryComponent extends React.Compo
             .then(result => {
                 console.log('result of promoted preInventory is:', result)
                 this.setState({...this.state, cart: []})
+                this.reGetPreInventory()
             }).catch(err => {
                 console.log("error", err)
             })

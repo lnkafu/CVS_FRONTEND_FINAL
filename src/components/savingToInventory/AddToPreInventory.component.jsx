@@ -166,13 +166,17 @@ export default class AddToPreInvenotryComponent extends React.Component {
                             <select className="form-control" name='itemType' value={this.state.itemType} onChange={this.handleChange} required >
                                 <option> </option>
                                 <option>Laptop</option>
+                                <option>Tower</option>
                                 <option>Desktop</option>
+                                <option>All-in-one</option>
                                 <option>Monitor</option>
                                 <option>TV</option>
                                 <option>Projector</option>
                                 <option>Keyboard</option>
                                 <option>Printer</option>
                                 <option>Mouse</option>
+                                <option>Ram</option>
+                                <option>HDD</option>
                                 <option>Power Cable</option>
                                 <option>VGA/Display Cable</option>
                                 <option>Other Accessories</option>
@@ -208,7 +212,6 @@ export default class AddToPreInvenotryComponent extends React.Component {
                                 <option>LG</option>
                                 <option>HCL</option>
                                 <option>Others</option>
-                                <option>Unknown</option>
                             </select>
                         </div>
                     </div>
@@ -246,12 +249,11 @@ export default class AddToPreInvenotryComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" name="ramSize" value={this.state.ramSize} onChange={this.handleChange}>
                                 <option> </option>
-                                <option>None</option>
-                                <option>Unknown</option>
                                 <option>1GB</option>
                                 <option>2GB</option>
                                 <option>3GB</option>
                                 <option>4GB</option>
+                                <option>5GB</option>
                                 <option>6GB</option>
                                 <option>8GB</option>
                                 <option>12GB</option>
@@ -266,8 +268,6 @@ export default class AddToPreInvenotryComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" name="hddSize" value={this.state.hddSize} onChange={this.handleChange}>
                                 <option> </option>
-                                <option>None</option>
-                                <option>Unknown</option>
                                 <option>60GB</option>
                                 <option>100GB</option>
                                 <option>118GB</option>
@@ -293,9 +293,8 @@ export default class AddToPreInvenotryComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" name="generation" value={this.state.generation} onChange={this.handleChange}>
                                 <option> </option>
-                                <option>Unknown</option>
                                 <option>1st gen</option>
-                                <option>2ns/3rd gen</option>
+                                <option>2nd/3rd gen</option>
                                 <option>4th gen</option>
                                 <option>5th gen</option>
                                 <option>6th gen</option>

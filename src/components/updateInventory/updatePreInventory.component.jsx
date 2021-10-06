@@ -97,7 +97,7 @@ export default class UpdatePreInventoryComponent extends React.Component {
                     <td>{item.generation}</td>
                     <td>{item.quantity}</td>
                     <td><button className='btn btn-primary' onClick={() => this.increaseQuantity(item)}><b>+</b></button></td>
-                    <td><button className='btn btn-danger' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
+                    <td><button className='btn btn-danger ' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
                 </tr>
             })
         } else {
