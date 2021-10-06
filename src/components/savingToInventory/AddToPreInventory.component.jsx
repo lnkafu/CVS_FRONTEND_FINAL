@@ -46,8 +46,8 @@ export default class AddToPreInvenotryComponent extends React.Component {
         console.log(this.state.cart)
     }
 
-    addItem = () => {
-
+    addItem = (e) => {
+        e.preventDefault()
         let tempCart = this.state.cart
         let item = {
             itemType: this.state.itemType,
@@ -148,7 +148,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
     }
 
     render() {
-        return <div >
+        return <form onSubmit={this.addItem}>
             <div className='row mx-3'>
                 <div className='col-5 card'>
                     {//first div for inputs
@@ -157,13 +157,13 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Shipment Code:</div>
                         <div className='col-8'>
-                            <input className='form-control' value={this.state.shipmentCode} type="date" name="shipmentCode" onChange={this.handleChange} />
+                            <input className='form-control' value={this.state.shipmentCode} type="date" name="shipmentCode" onChange={this.handleChange} required/>
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Item Type:</div>
                         <div className='col-8'>
-                            <select className="form-control" name='itemType' value={this.state.itemType} onChange={this.handleChange} >
+                            <select className="form-control" name='itemType' value={this.state.itemType} onChange={this.handleChange} required >
                                 <option> </option>
                                 <option>Laptop</option>
                                 <option>Desktop</option>
@@ -183,7 +183,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Brand:</div>
                         <div className='col-8'>
-                            <select className="form-control" name='brand' value={this.state.brand} onChange={this.handleChange} >
+                            <select className="form-control" name='brand' value={this.state.brand} onChange={this.handleChange} required>
                                 <option> </option>
                                 <option>Dell</option>
                                 <option>HP</option>
@@ -215,7 +215,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Item Model:</div>
                         <div className='col-8'>
-                            <input className='form-control' type="text" value={this.state.itemModel} name="itemModel" onChange={this.handleChange} />
+                            <input className='form-control' type="text" value={this.state.itemModel} name="itemModel" onChange={this.handleChange} required/>
                         </div>
                     </div>
                     <div className='row'>
@@ -311,7 +311,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '> Quantity:</div>
                         <div className='col-8'>
-                            <input className='form-control' type="number" name="quantity" value={this.state.quantity} onChange={this.handleChange} />
+                            <input className='form-control' type="number" name="quantity" value={this.state.quantity} onChange={this.handleChange} required/>
                         </div>
                     </div>
                     <div className='row'>
@@ -323,7 +323,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3'></div>
                         <div className='col-8'> <br />
-                            <button onClick={this.addItem} type="button" className="btn btn-primary btn-block">Add To Cart</button>
+                            <button  type="submit" className="btn btn-primary btn-block">Add To Cart</button>
                         </div>
                     </div>
                 </div>
@@ -359,6 +359,6 @@ export default class AddToPreInvenotryComponent extends React.Component {
 
 
 
-        </div>
+        </form>
     }
 }
