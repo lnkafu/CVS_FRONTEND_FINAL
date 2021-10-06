@@ -13,6 +13,7 @@ import UpdateInventoryComponent from '../../components/updateInventory/updateInv
 import AddToPreInvenotryComponent from '../../components/savingToInventory/AddToPreInventory.component'
 import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component'
 import PromotePreInventoryToInventoryComponent from '../../components/updateInventory/PromotePreInventoryToInventory.component'
+import TransactionComponent from '../../components/transaction/transaction.component'
 
 class AdminDashBoard extends React.Component {
     constructor(props) {
@@ -109,7 +110,7 @@ class AdminDashBoard extends React.Component {
                         <Tab eventKey="addToPreInventory" title="Add To PreInventory">
                             <AddToPreInvenotryComponent />
                         </Tab>
-                        <Tab eventKey="updatePreInventory" title="Update PreInventory">
+                        <Tab eventKey="updatePreInventory" title="View/Update PreInventory">
                             <UpdatePreInventoryComponent />
                         </Tab>
                         <Tab eventKey="promotePreInventory" title="Promote PreInventory">
@@ -141,6 +142,9 @@ class AdminDashBoard extends React.Component {
                 </Tab>
 
 
+                <Tab eventKey="transaction" title="Transaction" >
+                    <TransactionComponent />
+                </Tab>
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
 

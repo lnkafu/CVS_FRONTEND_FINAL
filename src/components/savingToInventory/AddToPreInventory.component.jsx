@@ -222,12 +222,15 @@ export default class AddToPreInvenotryComponent extends React.Component {
                         <div className='col-3 '>Processor:</div>
                         <div className='col-8'>
                             <select className="form-control" name='processor' value={this.state.processor} onChange={this.handleChange}>
-                                <option></option>
+                            <option></option>
+                                <option>pentium 4</option>
+                                <option>pentium</option>
                                 <option>Core 2</option>
                                 <option> i3</option>
                                 <option> i5</option>
                                 <option> i7</option>
-                                <option> xeon</option>
+                                <option> i9</option>
+                                <option> Xeon</option>
                                 <option>AMD</option>
                                 <option>AMD E1</option>
                                 <option>AMD A4</option>

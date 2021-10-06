@@ -212,11 +212,14 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" value={this.state.processor} name='processor' onChange={this.handleChange}>
                                 <option></option>
+                                <option>pentium 4</option>
+                                <option>pentium</option>
                                 <option>Core 2</option>
                                 <option> i3</option>
                                 <option> i5</option>
                                 <option> i7</option>
-                                <option> xeon</option>
+                                <option> i9</option>
+                                <option> Xeon</option>
                                 <option>AMD</option>
                                 <option>AMD E1</option>
                                 <option>AMD A4</option>
