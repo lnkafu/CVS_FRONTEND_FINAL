@@ -618,6 +618,8 @@ export default class PerformSaleComponent extends React.Component {
                                                     <option>Desktop</option>
                                                     <option>Monitor</option>
                                                     <option>TV</option>
+                                                    <option>RAM</option>
+                                                    <option>HDD</option>
                                                     <option>Projector</option>
                                                     <option>Keyboard</option>
                                                     <option>Printer</option>

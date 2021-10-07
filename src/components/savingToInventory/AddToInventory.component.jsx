@@ -72,7 +72,6 @@ export default class AddToCartComponent extends React.Component {
             {
                 ...this.state,
                 cart: tempCart,
-
             }
         )
         console.log(this.state.cart)
@@ -110,7 +109,6 @@ export default class AddToCartComponent extends React.Component {
                     generation: '',
                     shipmentCode: '',
                     quantitySold: 0,
-                    addedBy: '',
                     cart: []
                 })
             })
@@ -159,6 +157,8 @@ export default class AddToCartComponent extends React.Component {
                                 <option>All-in-one</option>
                                 <option>Monitor</option>
                                 <option>TV</option>
+                                <option>RAM</option>
+                                <option>HDD</option>
                                 <option>Projector</option>
                                 <option>Keyboard</option>
                                 <option>Printer</option>
