@@ -107,7 +107,6 @@ export default class AddToCartComponent extends React.Component {
                     quantity: '',
                     unitPrice: '',
                     generation: '',
-                    shipmentCode: '',
                     quantitySold: 0,
                     cart: []
                 })
