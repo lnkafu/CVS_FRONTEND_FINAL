@@ -150,24 +150,22 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-3 '>Item Type:</div>
                         <div className='col-8'>
                             <select className="form-control" value={this.state.itemType} name='itemType' onChange={this.handleChange} >
-                                <option>Laptop</option>
-                                <option>Tower</option>
-                                <option>Desktop</option>
-                                <option>All-in-one</option>
-                                <option>Monitor</option>
-                                <option>TV</option>
-                                <option>RAM</option>
-                                <option>HDD</option>
-                                <option>Projector</option>
-                                <option>Keyboard</option>
-                                <option>Printer</option>
-                                <option>Mouse</option>
-                                <option>Ram</option>
-                                <option>HDD</option>
-                                <option>Power Cable</option>
-                                <option>VGA/Display Cable</option>
-                                <option>Other Accessories</option>
-                                <option>Monitor Stand</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Tower">Tower</option>
+                                <option value="Desktop">Desktop</option>
+                                <option value="All-in-one">All-in-one</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="TV">TV</option>
+                                <option value="RAM">RAM</option>
+                                <option value="HDD">HDD</option>
+                                <option value="Projector">Projector</option>
+                                <option value="Keyboard">Keyboard</option>
+                                <option value="Printer">Printer</option>
+                                <option value="Mouse">Mouse</option>
+                                <option value="Power Cable">Power Cable</option>
+                                <option value="VGA/Display Cable">VGA/Display Cable</option>
+                                <option value="Other Accessories">Other Accessories</option>
+                                <option value="Monitor Stand">Monitor Stand</option>
                             </select>
                         </div>
                     </div>
