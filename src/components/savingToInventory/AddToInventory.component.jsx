@@ -98,7 +98,7 @@ export default class AddToCartComponent extends React.Component {
                 alert("Item Added to Inventory")
                 this.setState({
                     ...this.state,
-                    itemType: '',
+                   // itemType: '',
                     brand: '',
                     itemModel: '',
                     processor: '',
