@@ -10,7 +10,7 @@ export default class AddToCartComponent extends React.Component {
         this.state = {
             open: false,
             setOpen: false,
-            itemType: '',
+            itemType: 'Laptop',
             brand: '',
             itemModel: '',
             processor: '',
