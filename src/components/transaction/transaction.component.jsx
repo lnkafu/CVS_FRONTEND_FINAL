@@ -32,10 +32,7 @@ export default class TransactionComponent extends React.Component {
             amount: this.state.amount,
             repaymentAmount: this.state.repaymentAmount
         }
-        alert(<div className="alert alert-success" >
-        Success
-        <p>Success</p>
-    </div>)
+        alert('success')
         console.log(transaction)
         return <div className="alert alert-success" >
             Success
