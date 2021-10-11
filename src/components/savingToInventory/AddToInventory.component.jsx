@@ -280,7 +280,7 @@ export default class AddToCartComponent extends React.Component {
                             <select className="form-control" value={this.state.generation} name="generation" onChange={this.handleChange}>
                                 <option> </option>
                                 <option>1st gen</option>
-                                <option>2ns/3rd gen</option>
+                                <option>2nd/3rd gen</option>
                                 <option>4th gen</option>
                                 <option>5th gen</option>
                                 <option>6th gen</option>
