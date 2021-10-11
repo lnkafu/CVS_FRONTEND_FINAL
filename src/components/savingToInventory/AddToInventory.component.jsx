@@ -155,6 +155,7 @@ export default class AddToCartComponent extends React.Component {
                                 <option value="Desktop">Desktop</option>
                                 <option value="All-in-one">All-in-one</option>
                                 <option value="Monitor">Monitor</option>
+                                <option value="Labtop Charger">Labtop Charger</option>
                                 <option value="TV">TV</option>
                                 <option value="RAM">RAM</option>
                                 <option value="HDD">HDD</option>

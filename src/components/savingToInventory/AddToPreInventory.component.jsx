@@ -157,30 +157,30 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Shipment Code:</div>
                         <div className='col-8'>
-                            <input className='form-control' value={this.state.shipmentCode} type="date" name="shipmentCode" onChange={this.handleChange} required/>
+                            <input className='form-control' value={this.state.shipmentCode} type="date" name="shipmentCode" onChange={this.handleChange} required />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Item Type:</div>
                         <div className='col-8'>
                             <select className="form-control" name='itemType' value={this.state.itemType} onChange={this.handleChange} required >
-                                <option> </option>
-                                <option>Laptop</option>
-                                <option>Tower</option>
-                                <option>Desktop</option>
-                                <option>All-in-one</option>
-                                <option>Monitor</option>
-                                <option>TV</option>
-                                <option>Projector</option>
-                                <option>Keyboard</option>
-                                <option>Printer</option>
-                                <option>Mouse</option>
-                                <option>Ram</option>
-                                <option>HDD</option>
-                                <option>Power Cable</option>
-                                <option>VGA/Display Cable</option>
-                                <option>Other Accessories</option>
-                                <option>Monitor Stand</option>
+                                <option value="Laptop">Laptop</option>
+                                <option value="Tower">Tower</option>
+                                <option value="Desktop">Desktop</option>
+                                <option value="All-in-one">All-in-one</option>
+                                <option value="Monitor">Monitor</option>
+                                <option value="Labtop Charger">Labtop Charger</option>
+                                <option value="TV">TV</option>
+                                <option value="RAM">RAM</option>
+                                <option value="HDD">HDD</option>
+                                <option value="Projector">Projector</option>
+                                <option value="Keyboard">Keyboard</option>
+                                <option value="Printer">Printer</option>
+                                <option value="Mouse">Mouse</option>
+                                <option value="Power Cable">Power Cable</option>
+                                <option value="VGA/Display Cable">VGA/Display Cable</option>
+                                <option value="Other Accessories">Other Accessories</option>
+                                <option value="Monitor Stand">Monitor Stand</option>
                             </select>
                         </div>
                     </div>
@@ -218,14 +218,14 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '>Item Model:</div>
                         <div className='col-8'>
-                            <input className='form-control' type="text" value={this.state.itemModel} name="itemModel" onChange={this.handleChange} required/>
+                            <input className='form-control' type="text" value={this.state.itemModel} name="itemModel" onChange={this.handleChange} required />
                         </div>
                     </div>
                     <div className='row'>
                         <div className='col-3 '>Processor:</div>
                         <div className='col-8'>
                             <select className="form-control" name='processor' value={this.state.processor} onChange={this.handleChange}>
-                            <option></option>
+                                <option></option>
                                 <option>pentium 4</option>
                                 <option>pentium</option>
                                 <option>Core 2</option>
@@ -310,7 +310,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3 '> Quantity:</div>
                         <div className='col-8'>
-                            <input className='form-control' type="number" name="quantity" value={this.state.quantity} onChange={this.handleChange} required/>
+                            <input className='form-control' type="number" name="quantity" value={this.state.quantity} onChange={this.handleChange} required />
                         </div>
                     </div>
                     <div className='row'>
@@ -322,7 +322,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                     <div className='row'>
                         <div className='col-3'></div>
                         <div className='col-8'> <br />
-                            <button  type="submit" className="btn btn-primary btn-block">Add To Cart</button>
+                            <button type="submit" className="btn btn-primary btn-block">Add To Cart</button>
                         </div>
                     </div>
                 </div>

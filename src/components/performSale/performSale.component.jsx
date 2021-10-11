@@ -617,6 +617,7 @@ export default class PerformSaleComponent extends React.Component {
                                                     <option>Laptop</option>
                                                     <option>Desktop</option>
                                                     <option>Monitor</option>
+                                                    <option value="Labtop Charger">Labtop Charger</option>
                                                     <option>TV</option>
                                                     <option>RAM</option>
                                                     <option>HDD</option>
