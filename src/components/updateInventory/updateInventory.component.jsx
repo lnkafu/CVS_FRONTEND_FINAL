@@ -89,9 +89,7 @@ export default class UpdateInventoryComponent extends React.Component {
                     <td>{item.itemID}</td>
                     <td>{item.shipmentCode}</td>
                     <td>{item.itemType}</td>
-                    <td>{item.brand}</td>
-                    <td>{item.itemModel}</td>
-                    <td>{item.processor}</td>
+                    <td>{item.brand} {item.itemModel} {item.processor}</td>
                     <td>{item.ramSize}</td>
                     <td>{item.hddSize}</td>
                     <td>{item.generation}</td>
@@ -108,9 +106,7 @@ export default class UpdateInventoryComponent extends React.Component {
                         <td>{item.itemID}</td>
                         <td>{item.shipmentCode}</td>
                         <td>{item.itemType}</td>
-                        <td>{item.brand}</td>
-                        <td>{item.itemModel}</td>
-                        <td>{item.processor}</td>
+                        <td> {item.brand} {item.itemModel} {item.processor}</td>
                         <td>{item.ramSize}</td>
                         <td>{item.hddSize}</td>
                         <td>{item.generation}</td>
@@ -199,9 +195,7 @@ export default class UpdateInventoryComponent extends React.Component {
                                     <th>ID</th>
                                     <th>Shipment Code</th>
                                     <th>Item Type</th>
-                                    <td>Item Brand</td>
                                     <td>Item Model</td>
-                                    <td>Processor</td>
                                     <th>Ram Size</th>
                                     <th>HDD Size</th>
                                     <th>Generation</th>
