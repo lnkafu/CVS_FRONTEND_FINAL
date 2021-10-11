@@ -34,7 +34,8 @@ export default class PerformSaleComponent extends React.Component {
             inventory: [],
             customers: [],
             soldItemsSaved: '',
-            user: ''
+            user: '',
+            searchItem: ''
         }
 
         this.handleChange = this.handleChange.bind(this);
@@ -277,8 +278,21 @@ export default class PerformSaleComponent extends React.Component {
         // console.log('inventory is ', this.state.inventory)
 
         return this.state.inventory.map((item, index) => {
-            // return this.inventory.map((item, index) => {
-            if (item.itemType === neededItemType && this.state.brand === '') {
+            if (item.itemDescription.toLocaleLowerCase().includes(this.state.searchItem.toLocaleLowerCase()) && this.state.searchItem !== '') {
+
+                return <tr key={index}>
+                    <td key={index}>{index + 1}</td>
+                    <td >{item.itemID}</td>
+                    <td >{item.shipmentCode}</td>
+                    <td>{item.itemDescription}  </td>
+                    <td>{item.quantity}</td>
+                    <td>{item.quantitySold}</td>
+                    <td>
+                        <button type='button' onClick={() => this.addItem(item)} className='btn btn-primary'>+</button>
+                    </td>
+                </tr>
+            }
+           else if (item.itemType === neededItemType && this.state.searchItem === '') {
 
                 return <tr key={index}>
                     <td key={index}>{index + 1}</td>
@@ -637,7 +651,11 @@ export default class PerformSaleComponent extends React.Component {
                                             </div>
                                         </div>
                                     </td>
-                                    {this.laptopBrand()}
+                                    {//this.laptopBrand()
+                                    }
+                                    <td>
+                                        <input className="form-control" name='searchItem' value={this.state.searchItem} onChange={this.handleChange} placeholder="Or search item by item description" />
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
