@@ -186,6 +186,7 @@ export default class AddToCartComponent extends React.Component {
                                 <option>Phillips</option>
                                 <option>Sony</option>
                                 <option>Gateway</option>
+                                <option>Nobilise</option>
                                 <option>IBM</option>
                                 <option>MSI</option>
                                 <option>Samsung</option>
