@@ -8,7 +8,8 @@ export default class ViewSaleComponent extends React.Component {
         super()
         this.state = {
             sales: [],
-            searchField: ''
+            searchField: '',
+            total: 0
         }
     }
     handleChange = async (evt) => {
@@ -19,6 +20,13 @@ export default class ViewSaleComponent extends React.Component {
             ...this.state,
             [name]: value
         });
+    }
+    calculateTotal = () => {
+        let total = 0
+        this.state.sales.forEach(item => {
+            total = total + item.total
+        })
+        return total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'
     }
     printSales = () => {
         let sales = this.state.sales
@@ -31,12 +39,12 @@ export default class ViewSaleComponent extends React.Component {
                     <td>{item.customerNumber}</td>
                     <td>{item.itemsSoldSummary}</td>
                     <td>{item.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frs</td>
-                    <button className='btn btn-success' onClick={()=>this.printReceiptCopy(item)}> Print</button>
+                    <button className='btn btn-success' onClick={() => this.printReceiptCopy(item)}> Print</button>
                 </tr>
             })
         } else {
             return sales.reverse().map((item, index) => {
-                if (item.customerName.toLowerCase().includes(this.state.searchField.toLowerCase())  || item.itemsSoldSummary.toLowerCase().includes(this.state.searchField.toLowerCase()) ) {
+                if (item.customerName.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemsSoldSummary.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index} >
                         <td>{item.date}</td>
                         <td>{item.confirmationNumber}</td>
@@ -44,7 +52,7 @@ export default class ViewSaleComponent extends React.Component {
                         <td>{item.customerNumber}</td>
                         <td>{item.itemsSoldSummary}</td>
                         <td>{item.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frs</td>
-                        <button className='btn btn-success' onClick={()=>this.printReceiptCopy(item)}> Print</button>
+                        <button className='btn btn-success' onClick={() => this.printReceiptCopy(item)}> Print</button>
                     </tr>
                 }
 
@@ -55,11 +63,11 @@ export default class ViewSaleComponent extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(url.url+"/getSales")
+        axios.get(url.url + "/getSales")
             .then(result => {
                 var salesTemp = result.data.Sales
                 this.setState({ ...this.state, sales: salesTemp })
-               // console.log('salesTemp is ', salesTemp)
+                // console.log('salesTemp is ', salesTemp)
             })
             .catch(err => {
                 console.log('err occurred ', err)
@@ -68,22 +76,22 @@ export default class ViewSaleComponent extends React.Component {
     componentDidUpdate() {
 
     }
-    reGetSales = ()=>{
-        axios.get(url.url+"/getSales")
+    reGetSales = () => {
+        axios.get(url.url + "/getSales")
             .then(result => {
                 var salesTemp = result.data.Sales
                 this.setState({ ...this.state, sales: salesTemp })
-               // console.log('salesTemp is ', salesTemp)
+                // console.log('salesTemp is ', salesTemp)
             })
             .catch(err => {
                 console.log('err occurred ', err)
             })
     }
-    printReceiptCopy = (result)=> {
-       // let soldItemsSaved = result.data.ItemsSold
+    printReceiptCopy = (result) => {
+        // let soldItemsSaved = result.data.ItemsSold
         let itemsTemp = result.itemsSoldSummary
 
-       console.log(result)
+        console.log(result)
         let items = []
         items = itemsTemp.split('-')
 
@@ -117,7 +125,7 @@ export default class ViewSaleComponent extends React.Component {
         })
         a.document.write('</table>');
 
-        //a.document.write(`<p> <b>Total</b> ${soldItemsSaved.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frs </p>`);
+        a.document.write(`<p> <b>Total</b> ${result.total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} frs </p>`);
 
         a.document.write(`</body>`);
 
@@ -139,7 +147,10 @@ export default class ViewSaleComponent extends React.Component {
     render() {
         return <div className='row mx-2'>
             <div className='card-header bg-info mx-2'>
-                <h4> SALES PERFORMED <button className='btn btn-dark btn-rounded' onClick={this.reGetSales}> Refresh List</button></h4>
+                <h4> SALES PERFORMED
+                    <button className='btn btn-dark btn-rounded' onClick={this.reGetSales}> Refresh List</button>
+                    <div align= 'center'> Total: {this.calculateTotal()}</div>
+                </h4>
                 <div className="input-group">
                     <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Sale Record By Customer Name Or Items Sold" aria-describedby="basic-addon2" />
                     <div className="input-group-append">
@@ -165,7 +176,7 @@ export default class ViewSaleComponent extends React.Component {
                     </tbody>
                 </table>
             </div>
-          
+
         </div>
     }
 }
