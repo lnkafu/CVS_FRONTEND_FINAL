@@ -2,6 +2,7 @@
 import React from 'react'
 import axios from 'axios'
 import url from '../config/url'
+import { Chart } from "react-google-charts";
 
 export default class AccountingAnalysisComponent extends React.Component {
     constructor(props) {
@@ -136,7 +137,28 @@ export default class AccountingAnalysisComponent extends React.Component {
                             <h6>Annual Employee Pay:</h6>
                         </div>
                     </div>
-                    <div className='col-6 card'></div>
+                    <div className='col-6 card'>
+                        <div className='card-body'>
+                            <Chart
+                                width={'600px'}
+                                height={'300px'}
+                                chartType="PieChart"
+                                loader={<div>Loading Chart</div>}
+                                data={[
+                                    ['Tsk', 'Hours per '],
+                                    ['Cash At Hand', 11],
+                                    ['Debt', 2],
+                                    ['Total Transfer', 2],
+                                    ['Watch TV', 2],
+                                    ['Sleep', 7],
+                                ]}
+                                options={{
+                                    title: 'Accounting Analysis',
+                                }}
+                                rootProps={{ 'data-testid': '1' }}
+                            />
+                        </div>
+                    </div>
                 </div>
                 <div className='row'>
                     <div className='col-6 card'>
