@@ -39,8 +39,19 @@ export default class AccountingAnalysisComponent extends React.Component {
                     <td>{transaction.description}</td>
                 </tr>
             }
-
-
+        })
+    }
+    printTransfers = () => {
+        let transactions = this.state.transactions
+        return transactions.reverse().map((transaction, index) => {
+            if (transaction.transactionType.toLowerCase() === 'transfer') {
+                return <tr key={index}>
+                    <td>{transaction.associatedDate}</td>
+                    <td>{transaction.associatedName}</td>
+                    <td>{transaction.associatedAmount}</td>
+                    <td>{transaction.description}</td>
+                </tr>
+            }
         })
 
 
@@ -180,7 +191,25 @@ export default class AccountingAnalysisComponent extends React.Component {
                             </table>
                         </div>
                     </div>
-                    <div className='col-6 card'></div>
+                    <div className='col-6 card'>
+                    <div className='card-body'>
+                            <table className='table table-striped table-dark table-hover'>
+                                <thead className='thead-primary'>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Reciever</th>
+                                        <th> Amount</th>
+                                        <th>Transfer Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        this.printTransfers()
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
 
             </div>
