@@ -12,6 +12,8 @@ import ViewInventoryComponent from '../../components/viewInventory/viewInventory
 import UpdateInventoryComponent from '../../components/updateInventory/updateInventory.component'
 import AddToPreInvenotryComponent from '../../components/savingToInventory/AddToPreInventory.component'
 import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component'
+import ViewTransactionsComponent from '../../components/transaction/viewTransactions.component'
+import TransactionComponent from '../../components/transaction/transaction.component'
 
 class ManagerDashBoard extends React.Component {
     constructor(props) {
@@ -109,6 +111,12 @@ class ManagerDashBoard extends React.Component {
                 </Tab>
                 <Tab eventKey="viewPreInventory" title="View/Update PreInventory">
                     <UpdatePreInventoryComponent />
+                </Tab>
+                <Tab eventKey="viewTransactions" title="View Transactions">
+                    <ViewTransactionsComponent />
+                </Tab>
+                <Tab eventKey="addTransactions" title="Add Transactions">
+                    <TransactionComponent />
                 </Tab>
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}

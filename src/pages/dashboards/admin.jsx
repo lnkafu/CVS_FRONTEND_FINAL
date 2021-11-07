@@ -14,6 +14,8 @@ import AddToPreInvenotryComponent from '../../components/savingToInventory/AddTo
 import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component'
 import PromotePreInventoryToInventoryComponent from '../../components/updateInventory/PromotePreInventoryToInventory.component'
 import TransactionComponent from '../../components/transaction/transaction.component'
+import ViewTransactionsComponent from '../../components/transaction/viewTransactions.component'
+import AccountingAnalysisComponent from '../../components/transaction/accountingAnalysis'
 
 class AdminDashBoard extends React.Component {
     constructor(props) {
@@ -141,10 +143,24 @@ class AdminDashBoard extends React.Component {
                     </Tabs>
                 </Tab>
 
+                <Tab eventKey="Acounting" title="Accounting">
+                    <Tabs animation="false" defaultActiveKey="addTransaction"  className="mb-3">
+                        <Tab eventKey="addTransaction" title="Add Transaction">
+                        <TransactionComponent />
+                        </Tab>
+                        <Tab eventKey="viewTransactions" title="View All Transactions">
+                            <ViewTransactionsComponent />
+                        </Tab>
+                        <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
+                            <AccountingAnalysisComponent />
+                        </Tab>
+                    </Tabs>
+                </Tab>
 
                 <Tab eventKey="transaction" title="Transaction" >
                     <TransactionComponent />
                 </Tab>
+
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
 
