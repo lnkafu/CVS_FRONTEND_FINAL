@@ -44,7 +44,7 @@ export default class AccountingAnalysisComponent extends React.Component {
     }
     printTransfers = () => {
         let transactions = this.state.transactions
-        return transactions.reverse().map((transaction, index) => {
+        return transactions.map((transaction, index) => {
             if (transaction.transactionType.toLowerCase() === 'transfer') {
                 return <tr key={index}>
                     <td>{transaction.associatedDate}</td>
