@@ -14,7 +14,8 @@ export default class AccountingAnalysisComponent extends React.Component {
             calulcatedSales: 0,
             calulcatedDebt: 0,
             calulcatedTransfers: 0,
-            calulcatedStoreExpenditures: 0
+            calulcatedStoreExpenditures: 0,
+            testData: 120
         }
 
     }
@@ -112,9 +113,20 @@ export default class AccountingAnalysisComponent extends React.Component {
         })
         return storeExpenditures
     }
-    calculateExpectedCashAtHand = () => {
-        return this.calculateSales() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures()
+    calculateEmployeePay = () => {
+        let pay = 0
+        this.state.transactions.forEach(item => {
+            if (item.transactionType.toLowerCase() === 'employee pay') {
+                pay = pay + item.associatedAmount
+            }
+        })
+        return pay
     }
+    
+    calculateExpectedCashAtHand = () => {
+        return this.calculateSales() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures() - calculateEmployeePay()
+    }
+
     refresh = async () => {
         await this.getSales()
         await this.getTransactions()
@@ -157,16 +169,17 @@ export default class AccountingAnalysisComponent extends React.Component {
                                 loader={<div>Loading Chart</div>}
                                 data={[
                                     ['Tsk', 'Hours per '],
-                                    ['Cash At Hand', 11],
-                                    ['Debt', 2],
-                                    ['Total Transfer', 2],
-                                    ['Watch TV', 2],
-                                    ['Sleep', 7],
+                                   // ['Cash At Hand', 110],
+                                   //['Cash At Hand', `${this.state.testData}`],
+                                  //  ['Debt', 20],
+                                    ['Total Transfer', 20],
+                                    ['Watch TV', 20],
+                                    ['Sleep', 70],
                                 ]}
                                 options={{
                                     title: 'Accounting Analysis',
                                 }}
-                                rootProps={{ 'data-testid': '1' }}
+                                rootProps={{ 'data-testid': '2' }}
                             />
                         </div>
                     </div>

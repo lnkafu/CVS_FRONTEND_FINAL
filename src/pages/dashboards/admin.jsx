@@ -157,10 +157,6 @@ class AdminDashBoard extends React.Component {
                     </Tabs>
                 </Tab>
 
-                <Tab eventKey="transaction" title="Transaction" >
-                    <TransactionComponent />
-                </Tab>
-
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
 
