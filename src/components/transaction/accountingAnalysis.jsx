@@ -122,9 +122,18 @@ export default class AccountingAnalysisComponent extends React.Component {
         })
         return pay
     }
+    calculateMoneyRecievedByYou = () => {
+        let pay = 0
+        this.state.transactions.forEach(item => {
+            if (item.transactionType.toLowerCase() === 'recieved money') {
+                pay = pay + item.associatedAmount
+            }
+        })
+        return pay
+    }
 
     calculateExpectedCashAtHand = () => {
-        return this.calculateSales() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures() - this.calculateEmployeePay()
+        return this.calculateSales() + this.calculateMoneyRecievedByYou() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures() - this.calculateEmployeePay()
     }
 
     refresh = async () => {
@@ -153,6 +162,7 @@ export default class AccountingAnalysisComponent extends React.Component {
                             <h6 className=" bg-warning text-dark">Total Transfers: {this.calculateTransfers().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <h6 className=" bg-info text-dark">Store Expenditures: {this.calculateStoreExpenditures().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <h6 className=" bg-secondary text-white">Employee Pay:{this.calculateEmployeePay().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
+                            <h6 className=" bg-dark text-white">Money Recieved By You:{this.calculateMoneyRecievedByYou().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <h6 className=" bg-primary text-dark">Expected Cash At Hand:{this.calculateExpectedCashAtHand().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <hr />
                             <h6>Monthly Rent:</h6>
