@@ -16,6 +16,9 @@ import PromotePreInventoryToInventoryComponent from '../../components/updateInve
 import TransactionComponent from '../../components/transaction/transaction.component'
 import ViewTransactionsComponent from '../../components/transaction/viewTransactions.component'
 import AccountingAnalysisComponent from '../../components/transaction/accountingAnalysis'
+import AddToInventoryEnRouteComponent from '../../components/savingToInventory/InventoryEnRoute.component'
+import UpdateInventoryEnRouteComponent from '../../components/updateInventory/updateInventoryEnRoute.component'
+import PromoteInventoryEnRouteComponent from '../../components/updateInventory/PromoteInventoryEnRoute.component'
 
 class AdminDashBoard extends React.Component {
     constructor(props) {
@@ -153,6 +156,20 @@ class AdminDashBoard extends React.Component {
                         </Tab>
                         <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
                             <AccountingAnalysisComponent />
+                        </Tab>
+                    </Tabs>
+                </Tab>
+
+                <Tab eventKey="Inventory En Route" title="Inventory En Route">
+                    <Tabs animation="false" defaultActiveKey="addInventoryEnRoute"  className="mb-3">
+                        <Tab eventKey="addInventoryEnRoute" title="Add Inventory En Route">
+                        <AddToInventoryEnRouteComponent />
+                        </Tab>
+                        <Tab eventKey="viewInventoryEnRoute" title="View/Update Inventory En Route">
+                            <UpdateInventoryEnRouteComponent />
+                        </Tab>
+                        <Tab eventKey="promoteInventoryEnRoute" title="Promote Inventory En Route">
+                            <PromoteInventoryEnRouteComponent />
                         </Tab>
                     </Tabs>
                 </Tab>

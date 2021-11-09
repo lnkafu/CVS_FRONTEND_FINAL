@@ -8,6 +8,7 @@ import MyModal from './testData/modal.component';
 import LoginPage from './pages/loginPage/loginpage';
 import AdminDashBoard from './pages/dashboards/admin';
 import ManagerDashBoard from './pages/dashboards/manager';
+import InvestorDashBoard from './pages/dashboards/investor';
 
 function App() {
   return (
@@ -33,6 +34,9 @@ function App() {
         </Route>
         <Route path='/ManagerDashboard'>
           <ManagerDashBoard />
+        </Route>
+        <Route path='/InvestorDashboard'>
+          <InvestorDashBoard />
         </Route>
         <Redirect exact path="/" to ='Login'>
           <LoginPage />

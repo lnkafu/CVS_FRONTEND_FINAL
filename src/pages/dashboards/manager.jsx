@@ -27,41 +27,41 @@ class ManagerDashBoard extends React.Component {
             user: data
         }
     }
-    
-    processUser = ()=>{
+
+    processUser = () => {
         const { history } = this.props
         let user = this.state.user
         if (user === null) history.push('/Login')
         else {
             return <div>
-                <ProfileComponent user = {user}/>
+                <ProfileComponent user={user} />
             </div>
         }
     }
 
-    logout = ()=>{
+    logout = () => {
         const { history } = this.props
         history.push('/Login')
-        sessionStorage.clear(); 
+        sessionStorage.clear();
     }
-    
-    getDate = ()=>{
+
+    getDate = () => {
         const dateObj = new Date()
-        const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+        const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
         let year = dateObj.getFullYear()
         let month = months[dateObj.getMonth()]
         let day = dateObj.getDate()
-        let date = month + ' ' + day +', '+ year
+        let date = month + ' ' + day + ', ' + year
         return date
     }
 
-    getWelcomeGreeting = ()=>{
-        if (this.state.user !== null && this.state.user.firstName !== null ) {
+    getWelcomeGreeting = () => {
+        if (this.state.user !== null && this.state.user.firstName !== null) {
             return <div>
-            <h6>Welcome: {this.state.user.firstName} , {this.state.user.lastName}</h6>
-        </div>
+                <h6>Welcome: {this.state.user.firstName} , {this.state.user.lastName}</h6>
+            </div>
         }
-        
+
     }
 
     render() {
@@ -74,7 +74,7 @@ class ManagerDashBoard extends React.Component {
                         <tr>
                             <th><h2><b>Computer Village Store</b></h2></th>
                         </tr>
-                        
+
                     </thead>
                 </div>
             </div>
@@ -88,43 +88,63 @@ class ManagerDashBoard extends React.Component {
                 <div className='col-4'>
                     <button className=' btn-danger ' onClick={this.logout}> Logout</button>
                 </div>
-                <hr/>
+                <hr />
             </div>
             <Tabs animation="false" defaultActiveKey="performSale" id="uncontrolled-tab-example" className="mb-3">
-        
-                <Tab eventKey="currentInventory" title="Current Inventory">
-                    <ViewInventoryComponent/>
+
+
+                <Tab eventKey="mysales" title="Sales">
+                    <Tabs animation="false" defaultActiveKey="performSale" className="mb-3">
+                        <Tab eventKey="performSale" title="Perform Sale">
+                            <PerformSaleComponent />
+                        </Tab>
+                        <Tab eventKey="viewSales" title="View Sales">
+                            <ViewSaleComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="performSale" title="Perform Sale">
-                    <PerformSaleComponent />
+                <Tab eventKey="inventory" title="Inventory">
+                    <Tabs animation="false" defaultActiveKey="currentInventory" className="mb-3">
+                        <Tab eventKey="currentInventory" title="Current Inventory">
+                            <ViewInventoryComponent />
+                        </Tab>
+                        <Tab eventKey="addToPreInventory" title="Add To PreInventory">
+                            <AddToPreInvenotryComponent />
+                        </Tab>
+                        <Tab eventKey="viewPreInventory" title="View/Update PreInventory">
+                            <UpdatePreInventoryComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="viewSales" title="View Sales">
-                    <ViewSaleComponent />
+                <Tab eventKey="customer" title="Customer">
+                    <Tabs animation="false" defaultActiveKey="viewCustomer" className="mb-3">
+                        <Tab eventKey="addCustomer" title="Add Customer">
+                            <AddCustomerComponent />
+                        </Tab>
+                        <Tab eventKey="viewCustomer" title="View Customer">
+                            <ViewCustomersComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="addCustomer" title="Add Customer">
-                    <AddCustomerComponent />
+
+                <Tab eventKey="transaction" title="Transaction/Accounting">
+                    <Tabs animation="false" defaultActiveKey="viewCustomer" className="mb-3">
+                        <Tab eventKey="viewTransactions" title="View Transactions">
+                            <ViewTransactionsComponent />
+                        </Tab>
+                        <Tab eventKey="addTransactions" title="Add Transactions">
+                            <TransactionComponent />
+                        </Tab>
+                        <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
+                            <AccountingAnalysisComponent />
+                        </Tab>
+                    </Tabs>
                 </Tab>
-                <Tab eventKey="viewCustomer" title="View Customer">
-                    <ViewCustomersComponent />
-                </Tab>
-                <Tab eventKey="addToPreInventory" title="Add To PreInventory">
-                    <AddToPreInvenotryComponent />
-                </Tab>
-                <Tab eventKey="viewPreInventory" title="View/Update PreInventory">
-                    <UpdatePreInventoryComponent />
-                </Tab>
-                <Tab eventKey="viewTransactions" title="View Transactions">
-                    <ViewTransactionsComponent />
-                </Tab>
-                <Tab eventKey="addTransactions" title="Add Transactions">
-                    <TransactionComponent />
-                </Tab>
-                <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
-                    <AccountingAnalysisComponent />
-                </Tab>
+                
+
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
-                    
+
                 </Tab>
             </Tabs>
         </div>
