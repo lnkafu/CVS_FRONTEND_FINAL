@@ -124,7 +124,7 @@ export default class AccountingAnalysisComponent extends React.Component {
     }
 
     calculateExpectedCashAtHand = () => {
-        return this.calculateSales() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures() - calculateEmployeePay()
+        return this.calculateSales() - this.calculateDebts() - this.calculateTransfers() - this.calculateStoreExpenditures() - this.calculateEmployeePay()
     }
 
     refresh = async () => {
