@@ -43,7 +43,7 @@ export default class AccountingAnalysisComponent extends React.Component {
         })
     }
     printTransfers = () => {
-        let transactions = this.state.transactions
+        let transactions = this.state.transactions.reverse()
         return transactions.map((transaction, index) => {
             if (transaction.transactionType.toLowerCase() === 'transfer') {
                 return <tr key={index}>
