@@ -50,7 +50,7 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
         e.preventDefault()
         let tempCart = this.state.cart
         let item = {
-            itemType: this.state.itemType,
+            itemType: " " + this.state.itemType,
             brand: " " + this.state.brand,
             itemModel: " " + this.state.itemModel,
             processor: " " + this.state.processor,
@@ -138,6 +138,7 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
             return <tr>
                 <td>{index + 1}</td>
                 <td key={index}> {quantity + brand + itemModel + processor + ramSize + hddSize + itemType + generation}</td>
+                <td> { unitPrice} </td>
                 <td> {quantity * unitPrice} </td>
                 <td>
                     <button type='button' onClick={() => this.deleteItem(index)} className='btn btn-danger'>X</button>
@@ -352,6 +353,7 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
                             <tr>
                                 <th>#</th>
                                 <th>Item_Description</th>
+                                <th>Unit_Price</th>
                                 <th>Total_Price</th>
                                 <th>Action</th>
                             </tr>
