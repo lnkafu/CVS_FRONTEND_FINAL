@@ -73,7 +73,7 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
                 ...this.state,
                 cart: tempCart,
 
-                itemType: '',
+               // itemType: '',
                 brand: '',
                 itemModel: '',
                 processor: '',
@@ -82,7 +82,7 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
                 quantity: '',
                 unitPrice: '',
                 generation: '',
-                shipmentCode: '',
+                //shipmentCode: '',
                 quantitySold: 0,
 
             }
