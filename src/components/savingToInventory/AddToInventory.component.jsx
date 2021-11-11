@@ -216,6 +216,7 @@ export default class AddToCartComponent extends React.Component {
                                 <option></option>
                                 <option>pentium 4</option>
                                 <option>pentium</option>
+                                <option>Celeron</option>
                                 <option>Core 2</option>
                                 <option> i3</option>
                                 <option> i5</option>
@@ -255,12 +256,17 @@ export default class AddToCartComponent extends React.Component {
                         <div className='col-3 '>HDD_Size:</div>
                         <div className='col-8'>
                             <select className="form-control" value={this.state.hddSize} name="hddSize" onChange={this.handleChange}>
-                                <option> </option>
+                            <option> </option>
+                                <option>SSD</option>
+                                <option>HDD</option>
                                 <option>60GB</option>
                                 <option>100GB</option>
                                 <option>118GB</option>
                                 <option>120GB</option>
+                                <option>128GB</option>
+                                <option>150GB</option>
                                 <option>160GB</option>
+                                <option>180GB</option>
                                 <option>200GB</option>
                                 <option>240GB</option>
                                 <option>250GB</option>

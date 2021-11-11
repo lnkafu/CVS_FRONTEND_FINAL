@@ -271,11 +271,16 @@ export default class AddToInventoryEnRouteComponent extends React.Component {
                         <div className='col-8'>
                             <select className="form-control" name="hddSize" value={this.state.hddSize} onChange={this.handleChange}>
                                 <option> </option>
+                                <option>SSD</option>
+                                <option>HDD</option>
                                 <option>60GB</option>
                                 <option>100GB</option>
                                 <option>118GB</option>
                                 <option>120GB</option>
+                                <option>128GB</option>
+                                <option>150GB</option>
                                 <option>160GB</option>
+                                <option>180GB</option>
                                 <option>200GB</option>
                                 <option>240GB</option>
                                 <option>250GB</option>
