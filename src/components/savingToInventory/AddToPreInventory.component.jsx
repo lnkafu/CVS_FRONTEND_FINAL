@@ -229,6 +229,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                                 <option></option>
                                 <option>pentium 4</option>
                                 <option>pentium</option>
+                                <option>Celeron</option>
                                 <option>Core 2</option>
                                 <option> i3</option>
                                 <option> i5</option>
