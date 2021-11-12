@@ -10,7 +10,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
         this.state = {
             open: false,
             setOpen: false,
-            itemType: '',
+            itemType: 'Laptop',
             brand: '',
             itemModel: '',
             processor: '',
@@ -73,7 +73,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                 ...this.state,
                 cart: tempCart,
 
-                itemType: '',
+                //itemType: '',
                 brand: '',
                 itemModel: '',
                 processor: '',
@@ -111,7 +111,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
                 alert("item inserted")
                 this.setState({
                     ...this.state,
-                    itemType: '',
+                    //itemType: '',
                     brand: '',
                     itemModel: '',
                     processor: '',
@@ -127,6 +127,7 @@ export default class AddToPreInvenotryComponent extends React.Component {
             })
             .catch(err => {
                 console.log(err)
+                alert("Data not saved. An error occurred ")
             })
     }
 
