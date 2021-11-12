@@ -59,7 +59,7 @@ class LoginComponent extends PureComponent {
                 }
                 else if (user.username === this.state.username && user.password === this.state.password && user.role.toLowerCase() === 'stock regulator') {
                     console.log('about to pust to investor dashboard')
-                    history.push('/InvestorDashboard')
+                    history.push('/RegulatorDashboard')
                 }
             })
             .catch(err => {
