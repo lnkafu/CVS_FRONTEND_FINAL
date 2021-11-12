@@ -57,6 +57,10 @@ class LoginComponent extends PureComponent {
                     console.log('about to pust to investor dashboard')
                     history.push('/InvestorDashboard')
                 }
+                else if (user.username === this.state.username && user.password === this.state.password && user.role === 'regulator') {
+                    console.log('about to pust to investor dashboard')
+                    history.push('/InvestorDashboard')
+                }
             })
             .catch(err => {
                 this.setState({ ...this.state, errorMessage: '!!! Invalid Username or Password. Please try again' })
