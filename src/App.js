@@ -9,6 +9,7 @@ import LoginPage from './pages/loginPage/loginpage';
 import AdminDashBoard from './pages/dashboards/admin';
 import ManagerDashBoard from './pages/dashboards/manager';
 import InvestorDashBoard from './pages/dashboards/investor';
+import RegulatorDashBoard from './pages/dashboards/regulator';
 
 function App() {
   return (
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path='/InvestorDashboard'>
           <InvestorDashBoard />
+        </Route>
+        <Route path='/RegulatorDashboard'>
+          <RegulatorDashBoard />
         </Route>
         <Redirect exact path="/" to ='Login'>
           <LoginPage />
