@@ -5,6 +5,7 @@ import { withRouter, Link } from 'react-router-dom';
 import ProfileComponent from '../../components/profile/profile.component'
 import ViewInventoryComponent from '../../components/viewInventory/viewInventory.component';
 import AddToPreInvenotryComponent from '../../components/savingToInventory/AddToPreInventory.component';
+import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component';
 
 class RegulatorDashBoard extends React.Component {
     constructor(props) {
@@ -81,22 +82,17 @@ class RegulatorDashBoard extends React.Component {
                 <hr />
             </div>
             <Tabs animation="false" defaultActiveKey="InventoryEnRoute" id="uncontrolled-tab-example" className="mb-3">
-
-                <Tab eventKey="InventoryEnRoute" title="Inventory En Route">
-                    <Tabs animation="false" defaultActiveKey="addInventoryEnRoute" className="mb-3">
-                        <Tab eventKey="addInventoryEnRoute" title="Add Inventory En Route">
-                            <ViewInventoryComponent />
-                        </Tab>
-                        <AddToPreInvenotryComponent />
-                    </Tabs>
+                <Tab eventKey="addInventoryEnRoute" title="View Current Inventory">
+                    <ViewInventoryComponent />
                 </Tab>
-
-
-
-
+                <Tab eventKey="addInventoryEnRoute" title="Add Inventory To PreInventory">
+                    <AddToPreInvenotryComponent />
+                </Tab>
+                <Tab eventKey="addInventoryEnRoute" title="View Inventory PreInventory">
+                    <UpdatePreInventoryComponent />
+                </Tab>
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
-
                 </Tab>
             </Tabs>
         </div>
