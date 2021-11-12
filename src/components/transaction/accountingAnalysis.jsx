@@ -165,10 +165,13 @@ export default class AccountingAnalysisComponent extends React.Component {
                             <h6 className=" bg-dark text-white">Money Recieved By You:{this.calculateMoneyRecievedByYou().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <h6 className=" bg-primary text-dark">Expected Cash At Hand:{this.calculateExpectedCashAtHand().toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + 'frs'}</h6>
                             <hr />
-                            <h6>Monthly Rent:</h6>
-                            <h6>Annual Rent:</h6>
-                            <h6>Employee Pay YTD:</h6>
-                            <h6>Annual Employee Pay:</h6>
+                            <h6>Monthly Rent (Cameroon): 170,000 frs</h6>
+                            <h6>Annual Rent(Cameroon): <p className=" bg-primary text-warning"> 2,040,000 frs </p> </h6>
+                            <h6>Annual Rent(USA): <p className=" bg-primary text-warning"> 1,500,000 frs </p> </h6>
+                            <h6>USA Transportation: <p className=" bg-primary text-warning"> 500,000 frs </p> </h6>
+                            <h6>Annual Employee Pay: <p className=" bg-primary text-warning"> 3,240,000 frs </p></h6>
+                            <h6>Estimated Shipping cost: <p className=" bg-primary text-warning"> 6,000,000 frs </p></h6>
+                            <h6>Fixed Yealy Expenditures: <p className=" bg-primary text-danger"> 13,280,000 frs </p></h6>
                         </div>
                     </div>
                     <div className='col-6 card'>
