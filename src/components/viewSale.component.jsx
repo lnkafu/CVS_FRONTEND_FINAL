@@ -33,7 +33,7 @@ export default class ViewSaleComponent extends React.Component {
         if (this.state.searchField === '') {
             return sales.reverse().map((item, index) => {
                 return <tr key={index}>
-                    <td>{item.date}</td>
+                    <td>{item.customDate || item.date }</td>
                     <td>{item.confirmationNumber}</td>
                     <td>{item.customerName}</td>
                     <td>{item.customerNumber}</td>
