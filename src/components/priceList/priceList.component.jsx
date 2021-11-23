@@ -59,11 +59,11 @@ export default class PriceListComponent extends React.Component {
                                     </tr>
                                     <tr>
                                         <td> 4th/5th Gen i5</td>
-                                        <td> 100,000 frs</td>
+                                        <td> 120,000 frs</td>
                                     </tr>
                                     <tr>
                                         <td> 4th/5th Gen i7</td>
-                                        <td> 120,000 frs</td>
+                                        <td> 140,000 frs</td>
                                     </tr>
                                 </tbody>
                             </div>
@@ -87,7 +87,7 @@ export default class PriceListComponent extends React.Component {
                                     </tr>
                                     <tr>
                                         <td> 6th Gen i7</td>
-                                        <td> 140,000 frs</td>
+                                        <td> 150,000 frs</td>
                                     </tr>
                                     <tr>
                                         <td> 7th Gen i3</td>
