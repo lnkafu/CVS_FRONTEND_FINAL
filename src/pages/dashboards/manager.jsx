@@ -15,6 +15,7 @@ import UpdatePreInventoryComponent from '../../components/updateInventory/update
 import ViewTransactionsComponent from '../../components/transaction/viewTransactions.component'
 import TransactionComponent from '../../components/transaction/transaction.component'
 import AccountingAnalysisComponent from '../../components/transaction/accountingAnalysis'
+import PriceListComponent from '../../components/priceList/priceList.component'
 
 class ManagerDashBoard extends React.Component {
     constructor(props) {
@@ -137,6 +138,9 @@ class ManagerDashBoard extends React.Component {
                         </Tab>
                         <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
                             <AccountingAnalysisComponent />
+                        </Tab>
+                        <Tab eventKey="priceList" title="Price List ">
+                            <PriceListComponent />
                         </Tab>
                     </Tabs>
                 </Tab>

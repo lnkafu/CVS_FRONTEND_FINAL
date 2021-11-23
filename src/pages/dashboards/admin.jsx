@@ -19,6 +19,7 @@ import AccountingAnalysisComponent from '../../components/transaction/accounting
 import AddToInventoryEnRouteComponent from '../../components/savingToInventory/InventoryEnRoute.component'
 import UpdateInventoryEnRouteComponent from '../../components/updateInventory/updateInventoryEnRoute.component'
 import PromoteInventoryEnRouteComponent from '../../components/updateInventory/PromoteInventoryEnRoute.component'
+import PriceListComponent from '../../components/priceList/priceList.component'
 
 class AdminDashBoard extends React.Component {
     constructor(props) {
@@ -99,7 +100,7 @@ class AdminDashBoard extends React.Component {
                 </div>
                 <hr />
             </div>
-            <Tabs animation="false" defaultActiveKey="Inventory"  className="mb-0">
+            <Tabs animation="false" defaultActiveKey="Inventory" className="mb-0">
                 <Tab eventKey="Inventory" title="Inventory">
                     <Tabs animation="false" defaultActiveKey="addToInventory" id="uncontrolled-tab-example" className="mb-3">
                         <Tab eventKey="addToInventory" title="Add To Inventory">
@@ -136,7 +137,7 @@ class AdminDashBoard extends React.Component {
                 </Tab>
 
                 <Tab eventKey="Customers" title="Customers">
-                    <Tabs animation="false" defaultActiveKey="addCustomer"  className="mb-3">
+                    <Tabs animation="false" defaultActiveKey="addCustomer" className="mb-3">
                         <Tab eventKey="addCustomer" title="Add Customer">
                             <AddCustomerComponent />
                         </Tab>
@@ -147,9 +148,9 @@ class AdminDashBoard extends React.Component {
                 </Tab>
 
                 <Tab eventKey="Acounting" title="Accounting">
-                    <Tabs animation="false" defaultActiveKey="addTransaction"  className="mb-3">
+                    <Tabs animation="false" defaultActiveKey="addTransaction" className="mb-3">
                         <Tab eventKey="addTransaction" title="Add Transaction">
-                        <TransactionComponent />
+                            <TransactionComponent />
                         </Tab>
                         <Tab eventKey="viewTransactions" title="View All Transactions">
                             <ViewTransactionsComponent />
@@ -157,13 +158,16 @@ class AdminDashBoard extends React.Component {
                         <Tab eventKey="accountingAnalysis" title="Accounting Analysis">
                             <AccountingAnalysisComponent />
                         </Tab>
+                        <Tab eventKey="priceList" title="Price List ">
+                            <PriceListComponent />
+                        </Tab>
                     </Tabs>
                 </Tab>
 
                 <Tab eventKey="Inventory En Route" title="Inventory En Route">
-                    <Tabs animation="false" defaultActiveKey="addInventoryEnRoute"  className="mb-3">
+                    <Tabs animation="false" defaultActiveKey="addInventoryEnRoute" className="mb-3">
                         <Tab eventKey="addInventoryEnRoute" title="Add Inventory En Route">
-                        <AddToInventoryEnRouteComponent />
+                            <AddToInventoryEnRouteComponent />
                         </Tab>
                         <Tab eventKey="viewInventoryEnRoute" title="View/Update Inventory En Route">
                             <UpdateInventoryEnRouteComponent />
