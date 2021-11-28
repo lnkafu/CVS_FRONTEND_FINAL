@@ -9,8 +9,21 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
         this.state = {
             preInventory: [],
             cart: [],
-            searchField: ''
+            searchField: '',
+            ojjTotal: 0
         }
+    }
+    getOJJTotal = ()=>{
+        let tot = 0
+        this.state.preInventory.forEach(item=>{
+            if (item.itemID.includes('OJJ')) {
+                tot = tot + item.quantity
+            }
+        })
+        this.setState({...this.state, ojjTotal: tot })
+    }
+    displayOJJTotal = ()=>{
+       // if ()
     }
     handleChange = async (evt) => {
         const value = evt.target.value;
@@ -96,6 +109,7 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
                     <td>{item.hddSize}</td>
                     <td>{item.generation}</td>
                     <td>{item.quantity}</td>
+                    <td>{item.unitPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                     <td><button className='btn btn-primary' onClick={() => this.increaseQuantity(item)}><b>+</b></button></td>
                     <td><button className='btn btn-danger ' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
                 </tr>
@@ -114,6 +128,7 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
                         <td>{item.hddSize}</td>
                         <td>{item.generation}</td>
                         <td>{item.quantity}</td>
+                        <td>{item.unitPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
                         <td><button className='btn btn-primary' onClick={() => this.increaseQuantity(item)}><b>+</b></button></td>
                         <td><button className='btn btn-danger' onClick={() => this.decreaseQuantity(item)}><b>-</b></button></td>
                     </tr>
@@ -138,22 +153,13 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(url.url+"/getInventoryEnRoute")
-            .then(result => {
-                //console.log('inventory is ', result.data.Data)
-                var preInventoryTemp = result.data.Data.reverse()
-                this.setState({ ...this.state, preInventory: preInventoryTemp })
-                // console.log('salesTemp is ', salesTemp)
-            })
-            .catch(err => {
-                console.log('err occurred ', err)
-            })
+        this.reGetList()
     }
     componentDidUpdate() {
 
     }
-    reGetList = ()=> {
-        axios.get(url.url+"/getInventoryEnRoute")
+    reGetList = async ()=> {
+        await  axios.get(url.url+"/getInventoryEnRoute")
         .then(result => {
             //console.log('inventory is ', result.data.Data)
             var preInventoryTemp = result.data.Data.reverse()
@@ -163,6 +169,7 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
         .catch(err => {
             console.log('err occurred ', err)
         })
+        this.getOJJTotal()
     }
 
     render() {
@@ -177,6 +184,7 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
                                 <button className="btn btn-outline-dark" type="button" onClick={this.handleShowSearchCustomer}>Search</button>
                             </div>
                         </div>
+                        <div><p>OJJ Total: {this.state.ojjTotal}</p></div>
                     </div>
                     <div className='card table-responsive'>
                         <table className='table table-striped table-dark table-hover ' >
@@ -192,6 +200,7 @@ export default class UpdateInventoryEnRouteComponent extends React.Component {
                                     <th>HDD Size</th>
                                     <th>Generation</th>
                                     <th>Quantity</th>
+                                    <th>Selling Price</th>
                                     <th></th>
                                     <th></th>
                                 </tr>
