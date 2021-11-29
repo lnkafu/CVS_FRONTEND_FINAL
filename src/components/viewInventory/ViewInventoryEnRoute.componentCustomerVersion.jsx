@@ -33,8 +33,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
             return preInventory.map((item, index) => {
                 return <tr key={index}>
                     <td>{item.itemType} + {item.brand}</td>
-                    <td>{item.itemModel}</td>
-                    <td>{item.processor}</td>
+                    <td>{item.itemModel} + {item.processor}</td>
                     <td>{item.ramSize}</td>
                     <td>{item.hddSize}</td>
                     <td>{item.generation}</td>
@@ -46,8 +45,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                 if (item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{item.itemType} + {item.brand}</td>
-                        <td>{item.itemModel}</td>
-                        <td>{item.processor}</td>
+                        <td>{item.itemModel} + {item.processor}</td>
                         <td>{item.ramSize}</td>
                         <td>{item.hddSize}</td>
                         <td>{item.generation}</td>
@@ -106,7 +104,6 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                                 <tr>
                                     <th>Item </th>
                                     <td>Item Model</td>
-                                    <td>Processor</td>
                                     <th>Ram Size</th>
                                     <th>HDD Size</th>
                                     <th>Generation</th>
