@@ -173,6 +173,8 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                 <div className='card'>
                     <div className='card-header bg-success'>
                     <div align='center' ><h1>CVS Store</h1></div>
+                    <div align='center' ><h5>Située au COLLEGE L'AGAPE CITE CICAM, </h5></div>
+                    <div align='center' ><h1>CVS Store</h1></div>
                     <div align='center' ><h4>Numero de Magasin/ Store Number: 651-692-518</h4></div>
                     <div align='center' ><h5>Whatsapp: 79543644\679-700-008</h5></div>
                         <h4> Current Items in Inventory En Route State <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List</button> </h4>
