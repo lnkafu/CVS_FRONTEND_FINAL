@@ -13,18 +13,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
             ojjTotal: 0
         }
     }
-    getOJJTotal = ()=>{
-        let tot = 0
-        this.state.preInventory.forEach(item=>{
-            if (item.itemID.includes('OJJ')) {
-                tot = tot + item.quantity
-            }
-        })
-        this.setState({...this.state, ojjTotal: tot })
-    }
-    displayOJJTotal = ()=>{
-       // if ()
-    }
+    
     handleChange = async (evt) => {
         const value = evt.target.value;
         const name = evt.target.name;
@@ -45,54 +34,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
         })
     }
 
-    increaseQuantity = (item) => {
-        let cart = this.state.cart
-        let added = false
-        if (cart.length === 0) {
-            item.quantity = item.quantity + 1
-            cart.push(item)
-            added = true
-        }
-        else {
-            cart.forEach((itm, index) => {
-                if (itm.itemID === item.itemID) {
-                    itm.quantity = itm.quantity + 1
-                    added = true
-                }
-            })
-        }
-        if (!added) {
-            item.quantity = item.quantity + 1
-            cart.push(item)
-        }
-        this.setState({ ...this.state, cart: cart })
-        console.log(this.state.cart)
-    }
-
-
-    decreaseQuantity = (item) => {
-        let cart = this.state.cart
-        let added = false
-        if (cart.length === 0) {
-            item.quantity = item.quantity - 1
-            cart.push(item)
-            added = true
-        }
-        else {
-            cart.forEach((itm, index) => {
-                if (itm.itemID === item.itemID) {
-                    itm.quantity = itm.quantity - 1
-                    added = true
-                }
-            })
-        }
-        if (!added) {
-            item.quantity = item.quantity - 1
-            cart.push(item)
-        }
-        this.setState({ ...this.state, cart: cart })
-        console.log(this.state.cart)
-    }
+  
 
     printPreInventory = () => {
         let preInventory = this.state.preInventory
@@ -134,17 +76,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
 
     }
 
-    updatePreInventory =  ()=>{
-        let preInventoryToBeUpdated = this.state.cart
-        axios.put(url.url+"/updateInventoryEnRoute", preInventoryToBeUpdated)
-        .then(result => {
-            console.log('result of update Inventory En Route is:', result)
-            alert('Item Updated Successfully.')
-        }).catch(err => {
-            console.log("error", err)
-            alert("Item Not Updated. Please retry later or contact Admin")
-        })
-    }
+   
 
     componentDidMount() {
         this.reGetList()
@@ -163,7 +95,6 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
         .catch(err => {
             console.log('err occurred ', err)
         })
-        this.getOJJTotal()
     }
 
     render() {
