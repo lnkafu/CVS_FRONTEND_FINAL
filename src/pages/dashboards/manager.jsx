@@ -16,6 +16,7 @@ import ViewTransactionsComponent from '../../components/transaction/viewTransact
 import TransactionComponent from '../../components/transaction/transaction.component'
 import AccountingAnalysisComponent from '../../components/transaction/accountingAnalysis'
 import PriceListComponent from '../../components/priceList/priceList.component'
+import ViewInventoryEnRouteComponent from '../../components/viewInventory/ViewInventoryEnRoute.component'
 
 class ManagerDashBoard extends React.Component {
     constructor(props) {
@@ -115,6 +116,9 @@ class ManagerDashBoard extends React.Component {
                         <Tab eventKey="viewPreInventory" title="View/Update PreInventory">
                             <UpdatePreInventoryComponent />
                         </Tab>
+                        <Tab eventKey="viewInventoryEnRoute" title="View Inventory En Route">
+                            <ViewInventoryEnRouteComponent />
+                        </Tab>
                     </Tabs>
                 </Tab>
                 <Tab eventKey="customer" title="Customer">
@@ -144,6 +148,7 @@ class ManagerDashBoard extends React.Component {
                         </Tab>
                     </Tabs>
                 </Tab>
+
                 
 
                 <Tab eventKey="profile" title="Profile" >

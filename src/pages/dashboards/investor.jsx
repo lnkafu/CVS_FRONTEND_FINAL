@@ -6,6 +6,7 @@ import ProfileComponent from '../../components/profile/profile.component'
 import AddToInventoryEnRouteComponent from '../../components/savingToInventory/InventoryEnRoute.component'
 import UpdateInventoryEnRouteComponent from '../../components/updateInventory/updateInventoryEnRoute.component'
 import PromoteInventoryEnRouteComponent from '../../components/updateInventory/PromoteInventoryEnRoute.component'
+import ViewInventoryEnRouteComponent from '../../components/viewInventory/ViewInventoryEnRoute.component';
 
 class InvestorDashBoard extends React.Component {
     constructor(props) {
@@ -89,7 +90,7 @@ class InvestorDashBoard extends React.Component {
                             <AddToInventoryEnRouteComponent />
                         </Tab>
                         <Tab eventKey="viewInventoryEnRoute" title="View/Update Inventory En Route">
-                            <UpdateInventoryEnRouteComponent />
+                            <ViewInventoryEnRouteComponent/>
                         </Tab>
                         
                     </Tabs>

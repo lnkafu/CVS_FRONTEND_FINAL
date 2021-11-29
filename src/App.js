@@ -10,6 +10,8 @@ import AdminDashBoard from './pages/dashboards/admin';
 import ManagerDashBoard from './pages/dashboards/manager';
 import InvestorDashBoard from './pages/dashboards/investor';
 import RegulatorDashBoard from './pages/dashboards/regulator';
+import ViewInventoryEnRouteComponent from './components/viewInventory/ViewInventoryEnRoute.component';
+import ViewInventoryEnRouteCustomerVersionComponent from './components/viewInventory/ViewInventoryEnRoute.componentCustomerVersion';
 
 function App() {
   return (
@@ -41,6 +43,9 @@ function App() {
         </Route>
         <Route path='/RegulatorDashboard'>
           <RegulatorDashBoard />
+        </Route>
+        <Route path='/InventoryEnRoute'>
+          <ViewInventoryEnRouteCustomerVersionComponent />
         </Route>
         <Redirect exact path="/" to ='Login'>
           <LoginPage />
