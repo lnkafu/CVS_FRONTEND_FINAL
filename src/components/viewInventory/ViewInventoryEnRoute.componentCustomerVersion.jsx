@@ -177,7 +177,7 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                     <div align='center' ><h1>CVS Store</h1></div>
                     <div align='center' ><h4>Numero de Magasin/ Store Number: 651-692-518</h4></div>
                     <div align='center' ><h5>Whatsapp: 79543644\679-700-008</h5></div>
-                        <h4> Current Items in Inventory En Route State <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List</button> </h4>
+                        <h4> <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List </button> Inventaire/Inventory En Route </h4>
                         <div className="input-group mb-3">
                             <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
