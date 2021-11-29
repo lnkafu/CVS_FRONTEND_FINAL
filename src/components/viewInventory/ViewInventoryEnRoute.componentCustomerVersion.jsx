@@ -174,9 +174,8 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                     <div className='card-header bg-success'>
                     <div align='center' ><h1>CVS Store</h1></div>
                     <div align='center' ><h5>Située au COLLEGE L'AGAPE CITE CICAM, </h5></div>
-                    <div align='center' ><h1>CVS Store</h1></div>
-                    <div align='center' ><h4>Numero de Magasin/ Store Number: 651-692-518</h4></div>
-                    <div align='center' ><h5>Whatsapp: 79543644\679-700-008</h5></div>
+                    <div align='center' ><h5>Numero de Magasin/ Store Number: 651-692-518</h5></div>
+                    <div align='center' ><h6>Whatsapp: 79543644\679-700-008</h6></div>
                         <h4> <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List </button> Inventaire/Inventory En Route </h4>
                         <div className="input-group mb-3">
                             <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
