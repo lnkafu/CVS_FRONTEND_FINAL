@@ -46,7 +46,7 @@ export default class ViewSaleComponent extends React.Component {
             return sales.reverse().map((item, index) => {
                 if (item.customerName.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemsSoldSummary.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index} >
-                        <td>{item.date}</td>
+                        <td>{item.customDate || item.date }</td>
                         <td>{item.confirmationNumber}</td>
                         <td>{item.customerName}</td>
                         <td>{item.customerNumber}</td>
