@@ -17,18 +17,7 @@ function App() {
   return (
     <Router>
       <Switch>
-        <Route path='/Register'>
-          <RegisterComponent />
-        </Route>
-        <Route path='/AddToCart'>
-          <AddToCartComponent />
-        </Route>
-        <Route path='/PerformSale'>
-          <PerformSaleComponent />
-        </Route>
-        <Route path='/Modal'>
-          <MyModal />
-        </Route>
+        
         <Route path='/Login'>
           <LoginPage />
         </Route>
