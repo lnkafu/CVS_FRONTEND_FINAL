@@ -104,8 +104,8 @@ export default class ViewInventoryEnRouteCustomerVersionComponent extends React.
                                 <tr>
                                     <th>Item </th>
                                     <td>Item Model</td>
-                                    <th>Ram Size</th>
-                                    <th>HDD Size</th>
+                                    <th>Ram </th>
+                                    <th>HDD </th>
                                     <th>Generation</th>
                                     <th>Quantity</th>
                                 </tr>
