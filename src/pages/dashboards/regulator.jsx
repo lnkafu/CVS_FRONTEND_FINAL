@@ -8,6 +8,7 @@ import AddToPreInvenotryComponent from '../../components/savingToInventory/AddTo
 import UpdatePreInventoryComponent from '../../components/updateInventory/updatePreInventory.component';
 import PromotePreInventoryToInventoryComponent from '../../components/updateInventory/PromotePreInventoryToInventory.component';
 import ViewInventoryEnRouteComponent from '../../components/viewInventory/ViewInventoryEnRoute.component';
+import AddToInventoryEnRouteComponent from '../../components/savingToInventory/InventoryEnRoute.component';
 
 class RegulatorDashBoard extends React.Component {
     constructor(props) {
@@ -98,6 +99,9 @@ class RegulatorDashBoard extends React.Component {
                 </Tab>
                 <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
                     <ViewInventoryEnRouteComponent />
+                </Tab>
+                <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
+                    <AddToInventoryEnRouteComponent />
                 </Tab>
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}

@@ -22,9 +22,7 @@ export default class ViewInventoryEnRouteComponent extends React.Component {
         })
         this.setState({...this.state, ojjTotal: tot })
     }
-    displayOJJTotal = ()=>{
-       // if ()
-    }
+    
     handleChange = async (evt) => {
         const value = evt.target.value;
         const name = evt.target.name;
@@ -170,10 +168,10 @@ export default class ViewInventoryEnRouteComponent extends React.Component {
 
     render() {
         return <div className='row'>
-            <div className='col-8'>
+            <div className='col-12'>
                 <div className='card'>
                     <div className='card-header bg-success'>
-                        <h4> Current Items in Inventory En Route State <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List</button> </h4>
+                        <h4> <b>Current Items in Inventory En Route State</b> <button className='btn btn-dark btn-rounded' onClick={this.reGetList}> Refresh List</button> </h4>
                         <div className="input-group mb-3">
                             <input type="text" name='searchField' onChange={this.handleChange} className="form-control" placeholder="Search Inventory Record By ID, Item type OR Item Model" aria-describedby="basic-addon2" />
                             <div className="input-group-append">
@@ -211,27 +209,6 @@ export default class ViewInventoryEnRouteComponent extends React.Component {
                 </div>
             </div>
 
-
-            <div className='col-4'>
-                <div className='card'>
-                    <div className='card-header bg-success'>
-                        <h6>Items to be Updated in the Inventory En Route</h6>
-                        <button className='btn btn-primary' onClick={this.updatePreInventory}>Save And Update PreInventory</button>
-                    </div>
-                    <div className='card-body'>
-                        <table className='table table-striped table-warning table-hover table-bordered'>
-                            <thead className='thead-primary'>
-                                <th>Item ID</th>
-                                <th>Item Description</th>
-                                <th>Quantity</th>
-                            </thead>
-                            <tbody>
-                                {this.printCart()}
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
         </div>
     }
 }
