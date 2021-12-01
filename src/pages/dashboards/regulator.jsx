@@ -97,10 +97,10 @@ class RegulatorDashBoard extends React.Component {
                 <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
                     <PromotePreInventoryToInventoryComponent />
                 </Tab>
-                <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
+                <Tab eventKey="viewInventoryEnRoute" title="View Inventory En Route">
                     <ViewInventoryEnRouteComponent />
                 </Tab>
-                <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
+                <Tab eventKey="addInventoryEnRoute" title="Add Inventory En Route">
                     <AddToInventoryEnRouteComponent />
                 </Tab>
                 <Tab eventKey="profile" title="Profile" >
