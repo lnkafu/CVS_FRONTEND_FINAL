@@ -84,7 +84,7 @@ class RegulatorDashBoard extends React.Component {
                 </div>
                 <hr />
             </div>
-            <Tabs animation="false" defaultActiveKey="InventoryEnRoute" id="uncontrolled-tab-example" className="mb-3">
+            <Tabs animation="false" defaultActiveKey="viewCurrentInventory" id="uncontrolled-tab-example" className="mb-3">
                 <Tab eventKey="viewCurrentInventory" title="View Current Inventory">
                     <ViewInventoryComponent />
                 </Tab>
@@ -94,15 +94,12 @@ class RegulatorDashBoard extends React.Component {
                 <Tab eventKey="viewPreInventory" title="View/Update Inventory PreInventory">
                     <UpdatePreInventoryComponent />
                 </Tab>
-                <Tab eventKey="promotePreInventory" title="Promote PreInventory to Inventory">
-                    <PromotePreInventoryToInventoryComponent />
-                </Tab>
+                
+                
                 <Tab eventKey="viewInventoryEnRoute" title="View Inventory En Route">
                     <ViewInventoryEnRouteComponent />
                 </Tab>
-                <Tab eventKey="addInventoryEnRoute" title="Add Inventory En Route">
-                    <AddToInventoryEnRouteComponent />
-                </Tab>
+                
                 <Tab eventKey="profile" title="Profile" >
                     {this.processUser()}
                 </Tab>
