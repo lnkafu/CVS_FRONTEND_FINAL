@@ -1,4 +1,4 @@
 
 //exports.url = "http://localhost:3012" // local server
 
-exports.url = "https://f0e7-2601-40-205-d43-7871-1790-41f3-e55.ngrok.io" // deployment server for backend code
+exports.url = "https://2ac4-2601-43-8201-4e30-f5ae-708a-94d7-e3a.ngrok.io" // deployment server for backend code
