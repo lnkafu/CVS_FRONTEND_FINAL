@@ -41,7 +41,7 @@ export default class ViewInventoryComponent extends React.Component {
             })
         } else {
             return inventory.reverse().map((item, index) => {
-                if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase())) {
+                if (item.itemType.toLowerCase().includes(this.state.searchField.toLowerCase()) || item.itemModel.toLowerCase().includes(this.state.searchField.toLowerCase()) ||  item.itemID.toLowerCase().includes(this.state.searchField.toLowerCase())) {
                     return <tr key={index}>
                         <td>{index+1}</td>
                         <td>{item.itemID}</td>
